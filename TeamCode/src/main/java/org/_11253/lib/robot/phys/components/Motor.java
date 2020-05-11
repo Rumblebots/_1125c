@@ -1,6 +1,7 @@
 package org._11253.lib.robot.phys.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import org._11253.lib.utils.math.Math;
 
 /**
  * An implementation of the default DcMotor.
@@ -13,7 +14,6 @@ public class Motor extends Component
     DcMotor dcMotorComponent;
 
     public boolean isRound;
-    public double curve;
 
     public Motor (String name)
     {
@@ -34,7 +34,7 @@ public class Motor extends Component
         }
         else
         {
-            dcMotorComponent.setPower((power + (curve * getPower())) / (2 * curve));
+            dcMotorComponent.setPower(Math.average(power, getPower()));
         }
     }
 }

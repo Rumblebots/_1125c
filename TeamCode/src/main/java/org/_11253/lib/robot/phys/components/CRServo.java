@@ -1,6 +1,7 @@
 package org._11253.lib.robot.phys.components;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org._11253.lib.utils.math.Math;
 
 /**
  * An implementation of the default CRServo.
@@ -13,7 +14,6 @@ public class CRServo extends Component
     com.qualcomm.robotcore.hardware.CRServo crServoComponent;
 
     public boolean isRound;
-    public double curve;
 
     public CRServo (String name)
     {
@@ -44,7 +44,7 @@ public class CRServo extends Component
         }
         else
         {
-            crServoComponent.setPower((power + (curve * getPower())) / (2 * curve));
+            crServoComponent.setPower(Math.average(power, getPower()));
         }
     }
 }
