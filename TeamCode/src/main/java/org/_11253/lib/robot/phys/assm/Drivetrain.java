@@ -30,7 +30,6 @@ public class Drivetrain
     public String backLeftName = "backLeft";
 
     public boolean isRound = false;
-    public double curve = 1.0;
 
     public MotorPower getPower ()
     {
@@ -57,11 +56,6 @@ public class Drivetrain
         frontLeft.isRound = isRound;
         backRight.isRound = isRound;
         backLeft.isRound = isRound;
-
-        frontRight.curve = curve;
-        frontLeft.curve = curve;
-        backRight.curve = curve;
-        backLeft.curve = curve;
     }
 
     public void setPower (MotorPower motorPower)
