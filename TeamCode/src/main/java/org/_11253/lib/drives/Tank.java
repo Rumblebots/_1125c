@@ -3,6 +3,7 @@ package org._11253.lib.drives;
 import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.motors.MotorPower;
 import org._11253.lib.op.TeleOp;
+import org._11253.lib.robot.Robot;
 import org._11253.lib.robot.phys.assm.Drivetrain;
 import org._11253.lib.utils.Command;
 import org._11253.lib.utils.gen.Shifter;
@@ -19,6 +20,11 @@ public class Tank extends TeleOp
     public Drivetrain drivetrain = new Drivetrain();
 
     public Shifter divisor = new Shifter(1, 3, 1);
+
+    public Tank ()
+    {
+        Robot.addSubsystem(new Drivetrain());
+    }
 
     /**
      * Map basic tank controls, which are just the following:

@@ -8,8 +8,8 @@ import org._11253.lib.utils.Command;
 /**
  * Tele-Op template class which uses the op mode template class.
  * <p>
- *     A user should NOT override the onStart() or onStartLoop() methods
- *     provided here, as they're 'required' for Tele-Op.
+ *     Provides a very simple extension of the default operation mode template.
+ *     There's really not much else it does. Yeah, that's it. Exciting, I know.
  * </p>
  */
 public class TeleOp extends Template
@@ -19,6 +19,11 @@ public class TeleOp extends Template
 
     /**
      * Example method that shows how control mapping is done.
+     * <p>
+     *     This can be over-written in a user's extension of the TeleOp class by simply
+     *     re-mapping what happens on START. This just exists as as a demonstration of how
+     *     control mapping works.
+     * </p>
      */
     public void mapStartButton ()
     {
@@ -48,8 +53,17 @@ public class TeleOp extends Template
         });
     }
 
+    /**
+     * If you'd like to modify what this function does, you should create another
+     * class which extends Template and modify it from there.
+     * <p>
+     *     Declared as final to ensure the user doesn't accidentally forget to run to set up the controllers.
+     *     In the driver-controlled mode of operation, the controllers obviously have to do things, which
+     *     is why this is set up as it is.
+     * </p>
+     */
     @Override
-    public void onStart ()
+    public final void onStart ()
     {
         Global.setGamepad1(gamepad1);
         Global.setGamepad2(gamepad2);
@@ -60,8 +74,17 @@ public class TeleOp extends Template
         mapStartButton();
     }
 
+    /**
+     * If you'd like to modify what this function does, you should create another
+     * class which extends Template and modify it from there.
+     * <p>
+     *     Declared as final to ensure the user doesn't accidentally forget to run the controller's maps.
+     *     In the driver-controlled mode of operation, the controllers obviously have to do things, which
+     *     is why this is set up as it is.
+     * </p>
+     */
     @Override
-    public void onStartLoop ()
+    public final void onStartLoop ()
     {
         controller1.map.runMap();
         controller2.map.runMap();
