@@ -92,6 +92,8 @@ public class Template extends LinearOpMode
         Global.setHwMap(hardwareMap);
         Global.setTelem(telemetry);
 
+        waitForStart();
+
         onStart();
 
         load();
