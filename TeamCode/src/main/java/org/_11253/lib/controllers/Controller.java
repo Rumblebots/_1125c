@@ -5,13 +5,13 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 /**
  * Wrapper class for FTC's default Gamepad
  * <p>
- *     This provides some additional functionality over the default gamepad.
+ * This provides some additional functionality over the default gamepad.
  * </p>
  */
 public class Controller
 {
-    private Gamepad gamepad;
     public ControllerMap map;
+    private Gamepad gamepad;
 
     public Controller (Gamepad gamepad)
     {

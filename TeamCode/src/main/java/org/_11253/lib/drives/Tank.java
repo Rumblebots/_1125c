@@ -3,7 +3,6 @@ package org._11253.lib.drives;
 import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.motors.MotorPower;
 import org._11253.lib.op.TeleOp;
-import org._11253.lib.robot.Robot;
 import org._11253.lib.robot.phys.assm.Drivetrain;
 import org._11253.lib.utils.Command;
 import org._11253.lib.utils.gen.Shifter;
@@ -11,19 +10,62 @@ import org._11253.lib.utils.gen.Shifter;
 /**
  * Short and sweet drive train method which can be extended by other actual op modes.
  * <p>
- *     Includes a basic speed-shifter (divisor) as well as mapping really simple
- *     controls to controller 1, which is really just
+ * Includes a basic speed-shifter (divisor) as well as mapping really simple
+ * controls to controller 1, which is really just
  * </p>
  */
 public class Tank extends TeleOp
 {
+    /**
+     * A drivetrain. Yes, that's really it.
+     * That's all there is to it.
+     * <p>
+     * What's that one saying like thing? Is it
+     * "that's all folks?"
+     * </p>
+     */
     public Drivetrain drivetrain = new Drivetrain();
 
+    /**
+     * A simple speed-shifter.
+     * <p>
+     * This doesn't really have much of a practical application,
+     * as realistically, who the hell wants to have a three-speed
+     * virtually controlled shifter on a robot that can go a top
+     * of maybe 15 miles per hour? However, it looks cool,
+     * or something, and makes the file longer, which obviously makes it
+     * cooler... you get what I'm saying.
+     * </p>
+     */
     public Shifter divisor = new Shifter(1, 3, 1);
 
+    /**
+     * Simple constructor for Tank class.
+     * <p>
+     * Does a couple things:
+     *     <ul>
+     *         <li>Runs super() to set up all of the stuff in TeleOp</li>
+     *         <li>Adds runnable to onStart which inits the drivetrain and maps controls</li>
+     *     </ul>
+     * </p>
+     * <p>
+     *     PLEASE don't forget to always call super() when using a constructor for
+     *     init-based stuff, it's really important so all of the code functions properly.
+     * </p>
+     */
     public Tank ()
     {
-        Robot.addSubsystem(new Drivetrain());
+        super();
+
+        onStart.add(new Runnable()
+        {
+            @Override
+            public void run ()
+            {
+                drivetrain.init();
+                mapControls();
+            }
+        });
     }
 
     /**
@@ -121,18 +163,5 @@ public class Tank extends TeleOp
                 };
             }
         });
-    }
-
-    @Override
-    public void load ()
-    {
-        drivetrain.init();
-        mapControls();
-    }
-
-    @Override
-    public void run ()
-    {
-
     }
 }

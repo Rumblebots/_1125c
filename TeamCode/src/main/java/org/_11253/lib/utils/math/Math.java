@@ -1,5 +1,7 @@
 package org._11253.lib.utils.math;
 
+import android.annotation.SuppressLint;
+
 import java.util.Random;
 
 /**
@@ -26,6 +28,7 @@ public class Math
 
     /**
      * Returns the average of all of the parameters.
+     *
      * @param arguments a varargs argument for all of the numbers to average
      * @return the average of the double... arguments
      */
@@ -41,6 +44,7 @@ public class Math
 
     /**
      * Returns the average of all of the parameters.
+     *
      * @param arguments a varargs argument for all of the numbers to average
      * @return the average of the int... arguments
      */
@@ -56,27 +60,28 @@ public class Math
 
     /**
      * Check if all of the arguments in sample are between min and max.
-     * @param min the lowest possible value
-     * @param max the highest possible value
+     *
+     * @param min    the lowest possible value
+     * @param max    the highest possible value
      * @param sample a varargs argument for all of the numbers to check
      * @return a boolean, indicating whether or not all of the arguments passed
      */
     public static boolean isBetween (double min, double max, double... sample)
     {
-        boolean c = true;
         for (double d : sample)
         {
             if (!(min < d && d < max))
             {
-                c = false;
+                return false;
             }
         }
-        return c;
+        return true;
     }
 
     /**
      * Overload for clip, default min and max values of -1 and 1
      * respectively are provided.
+     *
      * @param d number to clip
      * @return the clipped value
      */
@@ -89,9 +94,10 @@ public class Math
      * Get the 'clipped' value of a number (d) and return it.
      * Make sure d fits in between min and max, and if it doesn't,
      * set it to the min or max, depending on what d is equal to.
+     *
      * @param min the lowest possible number
      * @param max the highest possible number
-     * @param d the number to clip
+     * @param d   the number to clip
      * @return the clipped number
      */
     public static double clip (double min, double max, double d)
@@ -100,18 +106,15 @@ public class Math
         {
             return min;
         }
-        else if (d > max)
-        {
-            return max;
-        }
         else
         {
-            return d;
+            return java.lang.Math.min(d, max);
         }
     }
 
     /**
      * Basic round function. Rounds a number to a set number of digits.
+     *
      * @param number the number to round
      * @param digits the amount of digits to round to
      * @return the newly rounded number. very fancy, to say the least.
@@ -539,12 +542,12 @@ public class Math
 
     public static int max (int a, int b)
     {
-        return a >= b ? a : b;
+        return java.lang.Math.max(a, b);
     }
 
     public static long max (long a, long b)
     {
-        return a >= b ? a : b;
+        return java.lang.Math.max(a, b);
     }
 
     public static float max (float a, float b)
@@ -559,7 +562,7 @@ public class Math
         }
         else
         {
-            return a >= b ? a : b;
+            return java.lang.Math.max(a, b);
         }
     }
 
@@ -575,18 +578,18 @@ public class Math
         }
         else
         {
-            return a >= b ? a : b;
+            return java.lang.Math.max(a, b);
         }
     }
 
     public static int min (int a, int b)
     {
-        return a <= b ? a : b;
+        return java.lang.Math.min(a, b);
     }
 
     public static long min (long a, long b)
     {
-        return a <= b ? a : b;
+        return java.lang.Math.min(a, b);
     }
 
     public static float min (float a, float b)
@@ -601,7 +604,7 @@ public class Math
         }
         else
         {
-            return a <= b ? a : b;
+            return java.lang.Math.min(a, b);
         }
     }
 
@@ -617,16 +620,16 @@ public class Math
         }
         else
         {
-            return a <= b ? a : b;
+            return java.lang.Math.min(a, b);
         }
     }
 
     public static float fma (float a, float b, float c)
     {
-        float result = (float) ((double) a * (double) b + (double) c);
-        return result;
+        return (float) ((double) a * (double) b + (double) c);
     }
 
+    @SuppressLint("Assert")
     public static double ulp (double d)
     {
         int exp = getExponent(d);
@@ -644,6 +647,7 @@ public class Math
         }
     }
 
+    @SuppressLint("Assert")
     public static float ulp (float f)
     {
         int exp = getExponent(f);
@@ -773,30 +777,15 @@ public class Math
         }
     }
 
+    @SuppressLint("Overflow")
     public static double nextUp (double d)
     {
-        if (d < 1.0D / 0.0)
-        {
-            long transducer = Double.doubleToRawLongBits(d + 0.0D);
-            return Double.longBitsToDouble(transducer + (transducer >= 0L ? 1L : -1L));
-        }
-        else
-        {
-            return d;
-        }
+        return java.lang.Math.nextUp(d);
     }
 
     public static float nextUp (float f)
     {
-        if (f < 1.0F / 0.0)
-        {
-            int transducer = Float.floatToRawIntBits(f + 0.0F);
-            return Float.intBitsToFloat(transducer + (transducer >= 0 ? 1 : -1));
-        }
-        else
-        {
-            return f;
-        }
+        return java.lang.Math.nextUp(f);
     }
 
     public static double nextDown (double d)
@@ -823,6 +812,7 @@ public class Math
         }
     }
 
+    @SuppressLint("Assert")
     static double powerOfTwoD (int n)
     {
         assert n >= -1022 && n <= 1023;
@@ -830,6 +820,7 @@ public class Math
         return Double.longBitsToDouble((long) n + 1023L << 52 & 9218868437227405312L);
     }
 
+    @SuppressLint("Assert")
     static float powerOfTwoF (int n)
     {
         assert n >= -126 && n <= 127;

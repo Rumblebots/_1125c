@@ -11,9 +11,8 @@ import org._11253.lib.utils.math.Math;
  */
 public class CRServo extends Component
 {
-    com.qualcomm.robotcore.hardware.CRServo crServoComponent;
-
     public boolean isRound;
+    com.qualcomm.robotcore.hardware.CRServo crServoComponent;
 
     public CRServo (String name)
     {
@@ -26,6 +25,18 @@ public class CRServo extends Component
         return crServoComponent.getPower();
     }
 
+    public void setPower (double power)
+    {
+        if (!isRound)
+        {
+            crServoComponent.setPower(power);
+        }
+        else
+        {
+            crServoComponent.setPower(Math.average(power, getPower()));
+        }
+    }
+
     public DcMotorSimple.Direction getDirection ()
     {
         return crServoComponent.getDirection();
@@ -34,17 +45,5 @@ public class CRServo extends Component
     public void setDirection (DcMotorSimple.Direction direction)
     {
         crServoComponent.setDirection(direction);
-    }
-
-    public void setPower (double power)
-    {
-        if (!isRound)
-        {
-           crServoComponent.setPower(power);
-        }
-        else
-        {
-            crServoComponent.setPower(Math.average(power, getPower()));
-        }
     }
 }

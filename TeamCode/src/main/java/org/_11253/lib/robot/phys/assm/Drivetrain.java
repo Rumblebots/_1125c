@@ -7,8 +7,8 @@ import org._11253.lib.robot.phys.components.Motor;
 /**
  * Template for a drive train.
  * <p>
- *     init() must be called before the motors are used, and the
- *     name of the motors can be changed via the strings
+ * init() must be called before the motors are used, and the
+ * name of the motors can be changed via the strings
  *     <ul>
  *         <li>frontRightName</li>
  *         <li>frontLeftName</li>
@@ -42,10 +42,20 @@ public class Drivetrain extends Subsystem
         };
     }
 
+    public void setPower (MotorPower motorPower)
+    {
+        frontRight.setPower(motorPower.frontRightPower);
+        frontLeft.setPower(motorPower.frontLeftPower);
+        backRight.setPower(motorPower.backRightPower);
+        backLeft.setPower(motorPower.backLeftPower);
+    }
+
     public void init ()
     {
         if (Global.getHwMap() == null)
+        {
             throw new NullPointerException("Global hardware map has to be initialized before initializing the drive train.");
+        }
 
         frontRight = new Motor(frontRightName);
         frontLeft = new Motor(frontLeftName);
@@ -56,13 +66,5 @@ public class Drivetrain extends Subsystem
         frontLeft.isRound = isRound;
         backRight.isRound = isRound;
         backLeft.isRound = isRound;
-    }
-
-    public void setPower (MotorPower motorPower)
-    {
-        frontRight.setPower(motorPower.frontRightPower);
-        frontLeft.setPower(motorPower.frontLeftPower);
-        backRight.setPower(motorPower.backRightPower);
-        backLeft.setPower(motorPower.backLeftPower);
     }
 }

@@ -11,9 +11,8 @@ import org._11253.lib.utils.math.Math;
  */
 public class Motor extends Component
 {
-    DcMotor dcMotorComponent;
-
     public boolean isRound;
+    DcMotor dcMotorComponent;
 
     public Motor (String name)
     {

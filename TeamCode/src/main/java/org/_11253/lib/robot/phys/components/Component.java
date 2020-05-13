@@ -12,7 +12,8 @@ public class Component
     /**
      * Creates a new component, takes a class (component type) as well as
      * a name (hardware name) for the component.
-     * @param c the class name (ie. DcMotor.class)
+     *
+     * @param c    the class name (ie. DcMotor.class)
      * @param name the name of the device, as it appears on the HardwareMap
      */
     public Component (Class<?> c, String name)

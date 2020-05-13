@@ -7,18 +7,18 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 /**
  * Contains a couple things (hardware map,telem, and gamepads) to be used anywhere.
  * <p>
- *     The HardwareMap must be set before anything else happens.
- *     TODO try to make this happen 100% of the time by using a template op mode
+ * The HardwareMap must be set before anything else happens.
+ * TODO try to make this happen 100% of the time by using a template op mode
  * </p>
  * <p>
- *     The Telemetry (really hard to spell, damn) needs to be set before telem can be used
- *     anywhere throughout the program.
- *     TODO try to make this happen 100% of the time by using a template op mode
+ * The Telemetry (really hard to spell, damn) needs to be set before telem can be used
+ * anywhere throughout the program.
+ * TODO try to make this happen 100% of the time by using a template op mode
  * </p>
  * <p>
- *     Both of the gamepads are required for LinearOpModes in Tele-Op, but not in auton.
- *     Not setting them in auton won't do anything. Once again, very cool, I know.
- *     TODO try to make this happen in Tele-Op op modes by using a template op mode
+ * Both of the gamepads are required for LinearOpModes in Tele-Op, but not in auton.
+ * Not setting them in auton won't do anything. Once again, very cool, I know.
+ * TODO try to make this happen in Tele-Op op modes by using a template op mode
  * </p>
  */
 public class Global

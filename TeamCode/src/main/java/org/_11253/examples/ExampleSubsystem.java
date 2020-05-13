@@ -34,8 +34,8 @@ public class ExampleSubsystem extends Subsystem
     /**
      * Required init function
      * <p>
-     *     This function sets the value of the motors and servos
-     *     to new components with the hardware names.
+     * This function sets the value of the motors and servos
+     * to new components with the hardware names.
      * </p>
      */
     public void init ()
@@ -64,6 +64,7 @@ public class ExampleSubsystem extends Subsystem
 
     /**
      * Set the power to all of the lifter's Components
+     *
      * @param power the new power to set to
      */
     public void setLifterPower (double power)

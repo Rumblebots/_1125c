@@ -7,8 +7,8 @@ import org._11253.lib.utils.gen.id.IdRegister;
  * Abstract class with the (very small) amount of things required for a subsystem.
  * That's really all there is to it.
  * <p>
- *     While creating a sub-system, making sure that components do not have
- *     a value set until the init function runs.
+ * While creating a sub-system, making sure that components do not have
+ * a value set until the init function runs.
  * </p>
  */
 public abstract class Subsystem

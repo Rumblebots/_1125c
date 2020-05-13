@@ -14,15 +14,42 @@ import java.io.File;
  * to a file for later usage in different OpModes. This should be
  * run before doing anything that uses pre-saved gyroscope data.
  */
-@TeleOp (name = "Calibrate Gyroscope", group = "default")
+@TeleOp(name = "Calibrate Gyroscope", group = "default")
 public final class CalibrateGyro extends Template
 {
     IMU imu;
     BNO055IMU.Parameters params;
     boolean hasNotBeenCalibrated;
 
-    @Override
-    public void onStart ()
+    // TODO make this a little bit cleaner.
+    public CalibrateGyro ()
+    {
+        onStart.add(new Runnable()
+        {
+            @Override
+            public void run ()
+            {
+                lOnStart();
+            }
+        }, new Runnable()
+        {
+            @Override
+            public void run ()
+            {
+                lLoad();
+            }
+        });
+        run.add(new Runnable()
+        {
+            @Override
+            public void run ()
+            {
+                lRun();
+            }
+        });
+    }
+
+    private void lOnStart ()
     {
         imu = new IMU("imu");
         params = new BNO055IMU.Parameters();
@@ -31,15 +58,13 @@ public final class CalibrateGyro extends Template
         hasNotBeenCalibrated = true;
     }
 
-    @Override
-    public void load ()
+    private void lLoad ()
     {
         imu.getImu().initialize(params);
         telemetry.clear();
     }
 
-    @Override
-    public void run ()
+    private void lRun ()
     {
         if (imu.getImu().isGyroCalibrated() && hasNotBeenCalibrated)
         {
