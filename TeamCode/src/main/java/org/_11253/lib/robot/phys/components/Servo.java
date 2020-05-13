@@ -14,11 +14,21 @@ public class Servo extends Component
         servoComponent = (com.qualcomm.robotcore.hardware.Servo) component;
     }
 
+    /**
+     * Gets the servo's current position.
+     *
+     * @return the servo's position.
+     */
     public double getPosition ()
     {
         return servoComponent.getPosition();
     }
 
+    /**
+     * Set the servo's target position
+     *
+     * @param position the next position to aim for
+     */
     public void setPosition (double position)
     {
         servoComponent.setPosition(position);

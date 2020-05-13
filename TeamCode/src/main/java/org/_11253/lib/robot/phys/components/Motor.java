@@ -11,6 +11,11 @@ import org._11253.lib.utils.math.Math;
  */
 public class Motor extends Component
 {
+    /**
+     * A boolean which determines whether or not the
+     * values of the component should be adjusted very
+     * suddenly or more slowly, based on averaging.
+     */
     public boolean isRound;
     DcMotor dcMotorComponent;
 
@@ -20,11 +25,24 @@ public class Motor extends Component
         dcMotorComponent = (DcMotor) component;
     }
 
+    /**
+     * Gets the power from the motor component.
+     *
+     * @return the motor component's value.
+     */
     public double getPower ()
     {
         return dcMotorComponent.getPower();
     }
 
+    /**
+     * Sets the motor component's power based on input.
+     * <p>
+     * isRound can toggle whether or not it should be rounded.
+     * </p>
+     *
+     * @param power the new power level
+     */
     public void setPower (double power)
     {
         if (!isRound)

@@ -27,7 +27,7 @@ public class ControllerMap
      * This is interfaced through the functions bind and unbind.
      * </p>
      */
-    private HashMap<States, Command> commandMap = new HashMap<States, Command>();
+    private HashMap<States, Command> commandMap = new HashMap<>();
     Gamepad gamepad;
 
     public ControllerMap (Gamepad gamepad)
@@ -41,7 +41,7 @@ public class ControllerMap
      * @param state   a state of the gamepad
      * @param command a function to execute
      */
-    public void bind (States state, Command command)
+    public final void bind (States state, Command command)
     {
         commandMap.put(state, command);
     }
@@ -51,7 +51,7 @@ public class ControllerMap
      *
      * @param state the state which should be unmapped
      */
-    public void unbind (States state)
+    public final void unbind (States state)
     {
         commandMap.remove(state);
     }
@@ -59,7 +59,7 @@ public class ControllerMap
     /**
      * Run all of the code which is stored in the map.
      */
-    public void runMap ()
+    public final void runMap ()
     {
 //        if (commandMap.containsKey(States.START))
         Objects.requireNonNull(commandMap.get(States.START)).getRunnable(gamepad.start).run();

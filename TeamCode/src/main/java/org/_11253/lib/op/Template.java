@@ -62,31 +62,49 @@ public class Template extends LinearOpMode
         }
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void fBeforeStart ()
     {
         runList(beforeStart);
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void fOnStart ()
     {
         runList(onStart);
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void fOnStartRun ()
     {
         runList(onStartRun);
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void fRun ()
     {
         runList(run);
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void fOnFinishRun ()
     {
         runList(onFinishRun);
     }
 
+    /**
+     * Internal function, just don't mess with it and you're good.
+     */
     private void onFinish ()
     {
         runList(onFinish);
