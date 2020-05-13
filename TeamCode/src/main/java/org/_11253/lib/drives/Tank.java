@@ -35,50 +35,91 @@ public class Tank extends TeleOp
      */
     public void mapControls ()
     {
-        controller1.map.bind(ControllerMap.States.STICK, new Command ()
+        controller1.map.bind(ControllerMap.States.STICK, new Command()
         {
-            public Runnable active = new Runnable ()
+            @Override
+            public Runnable active ()
             {
-                @Override
-                public void run ()
+                return new Runnable()
                 {
-                    drivetrain.setPower(new MotorPower ()
+                    @Override
+                    public void run ()
                     {
-                        double frontRightPower = controller1.getRightY() / divisor.getCurrentGear();
-                        double frontLeftPower = controller1.getLeftY() / divisor.getCurrentGear();
-                        double backRightPower = controller1.getRightY() / divisor.getCurrentGear();
-                        double backLeftPower = controller1.getLeftX() / divisor.getCurrentGear();
-                    });
-                }
-            };
-            public Runnable inactive = new Runnable ()
+                        drivetrain.setPower(new MotorPower()
+                        {
+                            double frontRightPower = controller1.getRightY() / divisor.getCurrentGear();
+                            double frontLeftPower = controller1.getLeftY() / divisor.getCurrentGear();
+                            double backRightPower = controller1.getRightY() / divisor.getCurrentGear();
+                            double backLeftPower = controller1.getLeftX() / divisor.getCurrentGear();
+                        });
+                    }
+                };
+            }
+
+            @Override
+            public Runnable inactive ()
             {
-                @Override
-                public void run ()
+                return new Runnable()
                 {
-                    /*
-                     * If there's no input, just stop the whole robot (kinda similar to braking).
-                     */
-                    drivetrain.setPower(new MotorPower ()
+                    @Override
+                    public void run ()
                     {
-                        double frontRightPower = 0;
-                        double frontLeftPower = 0;
-                        double backRightPower = 0;
-                        double backLeftPower = 0;
-                    });
-                }
-            };
+                        drivetrain.setPower(new MotorPower()
+                        {
+                            double frontRightPower = 0;
+                            double frontLeftPower = 0;
+                            double backRightPower = 0;
+                            double backLeftPower = 0;
+                        });
+                    }
+                };
+            }
         });
-        controller1.map.bind(ControllerMap.States.DPAD_UP, new Command ()
+        controller1.map.bind(ControllerMap.States.DPAD_UP, new Command()
         {
-            public Runnable active = new Runnable ()
+            @Override
+            public Runnable active ()
             {
-                @Override
-                public void run ()
+                return new Runnable()
                 {
-                    divisor.onPressShiftUp();
-                }
-            };
+                    @Override
+                    public void run ()
+                    {
+                        divisor.onPressShiftUp();
+                    }
+                };
+            }
+        });
+        controller1.map.bind(ControllerMap.States.DPAD_DOWN, new Command()
+        {
+            @Override
+            public Runnable active ()
+            {
+                return new Runnable()
+                {
+                    @Override
+                    public void run ()
+                    {
+                        divisor.onPressShiftDown();
+                    }
+                };
+            }
+
+            @Override
+            public Runnable inactive ()
+            {
+                return new Runnable()
+                {
+                    @Override
+                    public void run ()
+                    {
+                        if (!controller1.getDpadUp())
+                        {
+                            divisor.onRelease();
+                        }
+                    }
+                };
+            }
         });
     }
 

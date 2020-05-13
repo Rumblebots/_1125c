@@ -27,29 +27,40 @@ public class TeleOp extends Template
      */
     public void mapStartButton ()
     {
-        controller1.map.bind(ControllerMap.States.START, new Command ()
+        controller1.map.bind(ControllerMap.States.START, new Command()
         {
-            public Runnable active = new Runnable()
+            @Override
+            public Runnable active ()
             {
-                @Override
-                public void run ()
+                return new Runnable()
                 {
-                    /*
-                     * If the start button is pressed, run the code that's here.
-                     * In this case, all that this code does is add some telem and then update it.
-                     */
-                    Global.getTelem().addLine("The start button is currently pressed!");
-                    Global.getTelem().update();
-                }
-            };
-            public Runnable inactive = new Runnable()
+                    @Override
+                    public void run ()
+                    {
+                        /*
+                         * If the start button is pressed, run the code that's here.
+                         * In this case, all that this code does is add some telem and then update it.
+                         */
+                        Global.getTelem().addLine("The start button is currently pressed!");
+                        Global.getTelem().update();
+                    }
+                };
+            }
+
+            @Override
+            public Runnable inactive ()
             {
-                @Override
-                public void run ()
+                return new Runnable()
                 {
-                    // Don't do anything here.
-                }
-            };
+                    @Override
+                    public void run ()
+                    {
+                        /*
+                         * If the start button is not pressed, don't do anything at all.
+                         */
+                    }
+                };
+            }
         });
     }
 

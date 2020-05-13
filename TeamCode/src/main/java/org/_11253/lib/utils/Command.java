@@ -1,26 +1,33 @@
 package org._11253.lib.utils;
 
-public class Command
+public class Command implements CommandCore
 {
-    public Runnable active = new Runnable ()
+    public Runnable active ()
     {
-        @Override
-        public void run ()
+        return new Runnable()
         {
+            @Override
+            public void run ()
+            {
 
-        }
-    };
-    public Runnable inactive = new Runnable ()
+            }
+        };
+    }
+
+    public Runnable inactive ()
     {
-        @Override
-        public void run ()
+        return new Runnable()
         {
+            @Override
+            public void run ()
+            {
 
-        }
-    };
+            }
+        };
+    }
 
-    public Runnable getRunnable (boolean active)
+    public final Runnable getRunnable (boolean state)
     {
-        return active ? this.active : this.inactive;
+        return state ? active() : inactive();
     }
 }
