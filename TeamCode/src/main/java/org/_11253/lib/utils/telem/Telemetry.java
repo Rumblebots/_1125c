@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 11:31 PM
+ * Copyright last updated on 6/4/20, 11:34 PM
  * Part of the _1125c library
  *
  * **
@@ -179,21 +179,38 @@ public class Telemetry {
     /**
      * Removes a bit of data.
      *
-     * @param key
-     * @return
+     * @param key the key of the data you'd like to remove.
+     * @return the key you're using
      */
     public String removeData(String... key) {
         return remove(key);
     }
 
+    /**
+     * Removes a line.
+     *
+     * @param key the key of the line you'd like to remove.
+     * @return the key you're using
+     */
     public String removeLine(String... key) {
         return remove(key);
     }
 
+    /**
+     * Overload for removing something so no errors are thrown.
+     *
+     * @return string
+     */
     public String remove() {
         return remove("");
     }
 
+    /**
+     * Actual remove function
+     *
+     * @param key varargs argument so you can remove a lot of things.
+     * @return the very first key you're removing
+     */
     public String remove(String... key) {
         for (String k : key) {
             telemetry.remove(k);
@@ -201,11 +218,23 @@ public class Telemetry {
         return key[0];
     }
 
+    /**
+     * Clear all of the telemetry.
+     */
     public void clear() {
         telemetry = new HashMap<String, Telem>();
         currentTemporaryCap = 0;
     }
 
+    /**
+     * Prints the telemetry.
+     * <p>
+     * This is analogous to the default update method included
+     * in FTC's implementation of telemetry, except this does it
+     * 69% better. And trust me, I know, that's a real mature number
+     * to use.
+     * </p>
+     */
     public void printTelemetry() {
         org.firstinspires.ftc.robotcore.external.Telemetry t = Global.getTelem();
         for (HashMap.Entry<String, Telem> entry : telemetry.entrySet()) {
