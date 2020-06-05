@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib.controllers;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -8,8 +36,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
  * This provides some additional functionality over the default gamepad.
  * </p>
  */
-public class Controller
-{
+public class Controller {
     /**
      * The controller's map
      */
@@ -25,8 +52,7 @@ public class Controller
      *
      * @param gamepad the gamepad which the controller should be created off of.
      */
-    public Controller (Gamepad gamepad)
-    {
+    public Controller(Gamepad gamepad) {
         this.gamepad = gamepad;
         map = new ControllerMap(gamepad);
     }
@@ -36,8 +62,7 @@ public class Controller
      *
      * @return left stick's x value
      */
-    public final double getLeftX ()
-    {
+    public final double getLeftX() {
         return gamepad.left_stick_x;
     }
 
@@ -46,8 +71,7 @@ public class Controller
      *
      * @return left stick's y value
      */
-    public final double getLeftY ()
-    {
+    public final double getLeftY() {
         return gamepad.left_stick_y;
     }
 
@@ -56,8 +80,7 @@ public class Controller
      *
      * @return right stick's x value
      */
-    public final double getRightX ()
-    {
+    public final double getRightX() {
         return gamepad.right_stick_x;
     }
 
@@ -66,8 +89,7 @@ public class Controller
      *
      * @return right stick's y value
      */
-    public final double getRightY ()
-    {
+    public final double getRightY() {
         return gamepad.right_stick_y;
     }
 
@@ -76,8 +98,7 @@ public class Controller
      *
      * @return the right trigger's value
      */
-    public final double getRightTrigger ()
-    {
+    public final double getRightTrigger() {
         return gamepad.right_trigger;
     }
 
@@ -86,8 +107,7 @@ public class Controller
      *
      * @return the left trigger's value
      */
-    public final double getLeftTrigger ()
-    {
+    public final double getLeftTrigger() {
         return gamepad.left_trigger;
     }
 
@@ -96,8 +116,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getA ()
-    {
+    public final boolean getA() {
         return gamepad.a;
     }
 
@@ -106,8 +125,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getB ()
-    {
+    public final boolean getB() {
         return gamepad.b;
     }
 
@@ -116,8 +134,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getX ()
-    {
+    public final boolean getX() {
         return gamepad.x;
     }
 
@@ -126,8 +143,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getY ()
-    {
+    public final boolean getY() {
         return gamepad.y;
     }
 
@@ -136,8 +152,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getDpadUp ()
-    {
+    public final boolean getDpadUp() {
         return gamepad.dpad_up;
     }
 
@@ -146,8 +161,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getDpadRight ()
-    {
+    public final boolean getDpadRight() {
         return gamepad.dpad_right;
     }
 
@@ -156,8 +170,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getDpadDown ()
-    {
+    public final boolean getDpadDown() {
         return gamepad.dpad_down;
     }
 
@@ -166,8 +179,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getDpadLeft ()
-    {
+    public final boolean getDpadLeft() {
         return gamepad.dpad_left;
     }
 
@@ -176,8 +188,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getRightBumper ()
-    {
+    public final boolean getRightBumper() {
         return gamepad.right_bumper;
     }
 
@@ -186,8 +197,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getLeftBumper ()
-    {
+    public final boolean getLeftBumper() {
         return gamepad.left_bumper;
     }
 
@@ -196,8 +206,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getStart ()
-    {
+    public final boolean getStart() {
         return gamepad.start;
     }
 
@@ -206,8 +215,7 @@ public class Controller
      *
      * @return whether the button is pressed down or not (true = yes, false = no)
      */
-    public final boolean getSelect ()
-    {
+    public final boolean getSelect() {
         return gamepad.guide;
     }
 }

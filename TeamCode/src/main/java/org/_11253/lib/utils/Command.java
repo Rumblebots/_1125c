@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib.utils;
 
 /**
@@ -8,20 +36,16 @@ package org._11253.lib.utils;
  * you get what I'm saying.
  * </p>
  */
-public class Command implements CommandCore
-{
+public class Command implements CommandCore {
     /**
      * What's run when ACTIVE state is determined.
      *
      * @return runnable, for the active state.
      */
-    public Runnable active ()
-    {
-        return new Runnable()
-        {
+    public Runnable active() {
+        return new Runnable() {
             @Override
-            public void run ()
-            {
+            public void run() {
 
             }
         };
@@ -32,13 +56,10 @@ public class Command implements CommandCore
      *
      * @return runnable, for the inactive state.
      */
-    public Runnable inactive ()
-    {
-        return new Runnable()
-        {
+    public Runnable inactive() {
+        return new Runnable() {
             @Override
-            public void run ()
-            {
+            public void run() {
 
             }
         };
@@ -50,8 +71,7 @@ public class Command implements CommandCore
      * @param state true / false, active / inactive
      * @return active or inactive runnable
      */
-    public final Runnable getRunnable (boolean state)
-    {
+    public final Runnable getRunnable(boolean state) {
         return state ? active() : inactive();
     }
 }

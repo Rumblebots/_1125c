@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib.op;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -15,8 +43,7 @@ import java.util.ArrayList;
  * maybe see about making them objects so the code here is smaller and there's
  * no internal functions?
  */
-public class Template extends LinearOpMode
-{
+public class Template extends LinearOpMode {
     /**
      * List of Runnables to be run before the start of the
      * operation mode. This is before waitForStart() finishes;
@@ -54,10 +81,8 @@ public class Template extends LinearOpMode
      *
      * @param list List<'Runnable'> which should be run.
      */
-    public final void runList (ListWrapper<Runnable> list)
-    {
-        for (Runnable runnable : list.list)
-        {
+    public final void runList(ListWrapper<Runnable> list) {
+        for (Runnable runnable : list.list) {
             runnable.run();
         }
     }
@@ -65,48 +90,42 @@ public class Template extends LinearOpMode
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void fBeforeStart ()
-    {
+    private void fBeforeStart() {
         runList(beforeStart);
     }
 
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void fOnStart ()
-    {
+    private void fOnStart() {
         runList(onStart);
     }
 
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void fOnStartRun ()
-    {
+    private void fOnStartRun() {
         runList(onStartRun);
     }
 
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void fRun ()
-    {
+    private void fRun() {
         runList(run);
     }
 
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void fOnFinishRun ()
-    {
+    private void fOnFinishRun() {
         runList(onFinishRun);
     }
 
     /**
      * Internal function, just don't mess with it and you're good.
      */
-    private void onFinish ()
-    {
+    private void onFinish() {
         runList(onFinish);
     }
 
@@ -124,8 +143,7 @@ public class Template extends LinearOpMode
      * </p>
      */
     @Override
-    public final void runOpMode ()
-    {
+    public final void runOpMode() {
         Global.setHwMap(hardwareMap);
         Global.setTelem(telemetry);
 
@@ -135,8 +153,7 @@ public class Template extends LinearOpMode
 
         fOnStart();
 
-        while (opModeIsActive())
-        {
+        while (opModeIsActive()) {
             fOnStartRun();
 
             fRun();

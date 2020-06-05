@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib.drives;
 
 import org._11253.lib.controllers.ControllerMap;
@@ -14,8 +42,7 @@ import org._11253.lib.utils.gen.Shifter;
  * controls to controller 1, which is really just
  * </p>
  */
-public class Tank extends TeleOp
-{
+public class Tank extends TeleOp {
     /**
      * A drivetrain. Yes, that's really it.
      * That's all there is to it.
@@ -53,15 +80,12 @@ public class Tank extends TeleOp
      *     init-based stuff, it's really important so all of the code functions properly.
      * </p>
      */
-    public Tank ()
-    {
+    public Tank() {
         super();
 
-        onStart.add(new Runnable()
-        {
+        onStart.add(new Runnable() {
             @Override
-            public void run ()
-            {
+            public void run() {
                 drivetrain.init();
                 mapControls();
             }
@@ -75,20 +99,14 @@ public class Tank extends TeleOp
      *     <li>gear shifting</li>
      * </ul>
      */
-    public void mapControls ()
-    {
-        controller1.map.bind(ControllerMap.States.STICK, new Command()
-        {
+    public void mapControls() {
+        controller1.map.bind(ControllerMap.States.STICK, new Command() {
             @Override
-            public Runnable active ()
-            {
-                return new Runnable()
-                {
+            public Runnable active() {
+                return new Runnable() {
                     @Override
-                    public void run ()
-                    {
-                        drivetrain.setPower(new MotorPower()
-                        {
+                    public void run() {
+                        drivetrain.setPower(new MotorPower() {
                             double frontRightPower = controller1.getRightY() / divisor.getCurrentGear();
                             double frontLeftPower = controller1.getLeftY() / divisor.getCurrentGear();
                             double backRightPower = controller1.getRightY() / divisor.getCurrentGear();
@@ -99,15 +117,11 @@ public class Tank extends TeleOp
             }
 
             @Override
-            public Runnable inactive ()
-            {
-                return new Runnable()
-                {
+            public Runnable inactive() {
+                return new Runnable() {
                     @Override
-                    public void run ()
-                    {
-                        drivetrain.setPower(new MotorPower()
-                        {
+                    public void run() {
+                        drivetrain.setPower(new MotorPower() {
                             double frontRightPower = 0;
                             double frontLeftPower = 0;
                             double backRightPower = 0;
@@ -117,46 +131,34 @@ public class Tank extends TeleOp
                 };
             }
         });
-        controller1.map.bind(ControllerMap.States.DPAD_UP, new Command()
-        {
+        controller1.map.bind(ControllerMap.States.DPAD_UP, new Command() {
             @Override
-            public Runnable active ()
-            {
-                return new Runnable()
-                {
+            public Runnable active() {
+                return new Runnable() {
                     @Override
-                    public void run ()
-                    {
+                    public void run() {
                         divisor.onPressShiftUp();
                     }
                 };
             }
         });
-        controller1.map.bind(ControllerMap.States.DPAD_DOWN, new Command()
-        {
+        controller1.map.bind(ControllerMap.States.DPAD_DOWN, new Command() {
             @Override
-            public Runnable active ()
-            {
-                return new Runnable()
-                {
+            public Runnable active() {
+                return new Runnable() {
                     @Override
-                    public void run ()
-                    {
+                    public void run() {
                         divisor.onPressShiftDown();
                     }
                 };
             }
 
             @Override
-            public Runnable inactive ()
-            {
-                return new Runnable()
-                {
+            public Runnable inactive() {
+                return new Runnable() {
                     @Override
-                    public void run ()
-                    {
-                        if (!controller1.getDpadUp())
-                        {
+                    public void run() {
+                        if (!controller1.getDpadUp()) {
                             divisor.onRelease();
                         }
                     }

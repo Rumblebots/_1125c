@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib.controllers;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -19,8 +47,8 @@ import java.util.Objects;
  * A button and B button can be active at the same time.
  * </p>
  */
-public class ControllerMap
-{
+public class ControllerMap {
+    Gamepad gamepad;
     /**
      * A map of all of the commands which should be executed.
      * <p>
@@ -28,10 +56,8 @@ public class ControllerMap
      * </p>
      */
     private HashMap<States, Command> commandMap = new HashMap<>();
-    Gamepad gamepad;
 
-    public ControllerMap (Gamepad gamepad)
-    {
+    public ControllerMap(Gamepad gamepad) {
         this.gamepad = gamepad;
     }
 
@@ -41,8 +67,7 @@ public class ControllerMap
      * @param state   a state of the gamepad
      * @param command a function to execute
      */
-    public final void bind (States state, Command command)
-    {
+    public final void bind(States state, Command command) {
         commandMap.put(state, command);
     }
 
@@ -51,16 +76,14 @@ public class ControllerMap
      *
      * @param state the state which should be unmapped
      */
-    public final void unbind (States state)
-    {
+    public final void unbind(States state) {
         commandMap.remove(state);
     }
 
     /**
      * Run all of the code which is stored in the map.
      */
-    public final void runMap ()
-    {
+    public final void runMap() {
 //        if (commandMap.containsKey(States.START))
         Objects.requireNonNull(commandMap.get(States.START)).getRunnable(gamepad.start).run();
 //        if (commandMap.containsKey(States.A))
@@ -116,8 +139,7 @@ public class ControllerMap
      *      Add a way to change sensitivity or dead zones on stick movement detections
      * </p>
      */
-    public enum States
-    {
+    public enum States {
         START,
         A,
         B,

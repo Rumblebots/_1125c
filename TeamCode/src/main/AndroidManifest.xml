@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ ---
+  ~
+  ~ Copyright (c) 2020
+  ~ Copyright last updated on 6/4/20, 8:44 PM
+  ~ Part of the _1125c library
+  ~
+  ~ ---
+  ~
+  ~ Permission is granted, free of charge, to any person obtaining
+  ~ a copy of this software and / or any of it's related source code or
+  ~ documentation ("Software") to copy, merge, modify, publish,
+  ~ distribute, sublicense, and / or sell copies of Software.
+  ~
+  ~ All Software included is provided in an "as is" state, without any
+  ~ type or form of warranty. The Authors and Copyright Holders of this
+  ~ piece of software, documentation, or source code waive all
+  ~ responsibility and shall not be liable for any claim, damages, or
+  ~ other forms of liability, regardless of the form it may take.
+  ~
+  ~ Any form of re-distribution of Software is required to have this same
+  ~ copyright notice included in any source files or forms of documentation
+  ~ which have stemmed or branched off of the original Software.
+  ~
+  ~ ---
+  ~
+  -->
+
 <!-- Note: the actual manifest file used in your APK merges this file with contributions
      from the modules on which your app depends (such as FtcRobotController, etc).
      So it won't ultimately be as empty as it might here appear to be :-) -->
 
 <!-- The package name here determines the package for your R class and your BuildConfig class -->
 <manifest
-    package="org.firstinspires.ftc.teamcode"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+        package="org.firstinspires.ftc.teamcode"
+>
     <application/>
 </manifest>

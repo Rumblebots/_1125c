@@ -1,3 +1,31 @@
+/*
+ * ---
+ *
+ * Copyright (c) 2020
+ * Copyright last updated on 6/4/20, 8:44 PM
+ * Part of the _1125c library
+ *
+ * ---
+ *
+ * Permission is granted, free of charge, to any person obtaining
+ * a copy of this software and / or any of it's related source code or
+ * documentation ("Software") to copy, merge, modify, publish,
+ * distribute, sublicense, and / or sell copies of Software.
+ *
+ * All Software included is provided in an "as is" state, without any
+ * type or form of warranty. The Authors and Copyright Holders of this
+ * piece of software, documentation, or source code waive all
+ * responsibility and shall not be liable for any claim, damages, or
+ * other forms of liability, regardless of the form it may take.
+ *
+ * Any form of re-distribution of Software is required to have this same
+ * copyright notice included in any source files or forms of documentation
+ * which have stemmed or branched off of the original Software.
+ *
+ * ---
+ *
+ */
+
 package org._11253.lib;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -21,8 +49,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * TODO try to make this happen in Tele-Op op modes by using a template op mode
  * </p>
  */
-public class Global
-{
+public class Global {
     /**
      * Hardware map which should be used globally.
      * This has a getter and setter method so you shouldn't actually be touching this at any point.
@@ -50,8 +77,7 @@ public class Global
      *
      * @return gamepad1
      */
-    public static Gamepad getGamepad1 ()
-    {
+    public static Gamepad getGamepad1() {
         return gamepad1;
     }
 
@@ -60,8 +86,7 @@ public class Global
      *
      * @param gamepad1 new gamepad
      */
-    public static void setGamepad1 (Gamepad gamepad1)
-    {
+    public static void setGamepad1(Gamepad gamepad1) {
         Global.gamepad1 = gamepad1;
     }
 
@@ -70,8 +95,7 @@ public class Global
      *
      * @return gamepad2
      */
-    public static Gamepad getGamepad2 ()
-    {
+    public static Gamepad getGamepad2() {
         return gamepad2;
     }
 
@@ -80,8 +104,7 @@ public class Global
      *
      * @param gamepad2 new gamepad
      */
-    public static void setGamepad2 (Gamepad gamepad2)
-    {
+    public static void setGamepad2(Gamepad gamepad2) {
         Global.gamepad2 = gamepad2;
     }
 
@@ -90,8 +113,7 @@ public class Global
      *
      * @return global instance of telem
      */
-    public static Telemetry getTelem ()
-    {
+    public static Telemetry getTelem() {
         return telem;
     }
 
@@ -100,8 +122,7 @@ public class Global
      *
      * @param telem new telem
      */
-    public static void setTelem (Telemetry telem)
-    {
+    public static void setTelem(Telemetry telem) {
         Global.telem = telem;
     }
 
@@ -110,8 +131,7 @@ public class Global
      *
      * @return instance of hardware map
      */
-    public static HardwareMap getHwMap ()
-    {
+    public static HardwareMap getHwMap() {
         return hwMap;
     }
 
@@ -120,8 +140,7 @@ public class Global
      *
      * @param hwMap new hardware map
      */
-    public static void setHwMap (HardwareMap hwMap)
-    {
+    public static void setHwMap(HardwareMap hwMap) {
         Global.hwMap = hwMap;
     }
 }
