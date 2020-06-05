@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/4/20, 9:59 PM
  * Part of the _1125c library
  *
  * **
@@ -130,6 +130,23 @@ public class Template extends LinearOpMode {
     }
 
     /**
+     * Should be used to append stuff to lists.
+     * <p>
+     * The user should override this in their custom implementation
+     * of the template OpMode. This runs right before waitForStart(),
+     * so they have access to all the init-ed stuff. This isn't required,
+     * but if you'd like to utilize the lists provided, you should probably
+     * use it. I'm guessing you want to use the lists. Either that, or
+     * you have no idea what you're doing. Or you're just reading the
+     * documentation for some reason - honestly, I got no idea, but hey,
+     * it's not my problem to deal with, now is it?
+     * </p>
+     */
+    public void initOp() {
+
+    }
+
+    /**
      * Base / template code that every op mode uses.
      * <p>
      * This code should NOT be overridden by the user, as everything they could possibly need to do
@@ -146,6 +163,8 @@ public class Template extends LinearOpMode {
     public final void runOpMode() {
         Global.setHwMap(hardwareMap);
         Global.setTelem(telemetry);
+
+        initOp();
 
         fBeforeStart();
 
