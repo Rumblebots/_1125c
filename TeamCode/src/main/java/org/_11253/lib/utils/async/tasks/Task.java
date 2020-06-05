@@ -26,24 +26,38 @@
  *
  */
 
-package org._11253.lib.robot.phys.components;
+package org._11253.lib.utils.async.tasks;
 
-import org._11253.lib.Global;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Template class for components, used internally in org._11253.lib.robot.phys.components package
- */
-public class Component {
-    public Object component;
+import static org._11253.lib.utils.async.SharedScheduler.scheduler;
 
-    /**
-     * Creates a new component, takes a class (component type) as well as
-     * a name (hardware name) for the component.
-     *
-     * @param c    the class name (ie. DcMotor.class)
-     * @param name the name of the device, as it appears on the HardwareMap
-     */
-    public Component(Class<?> c, String name) {
-        component = Global.getHwMap().get(c, name);
+public class Task {
+    protected ScheduledFuture<?> handle;
+    private Runnable executable;
+
+    public Task() {
+        this(null);
+    }
+
+    public Task(Runnable runnable) {
+        executable = runnable;
+    }
+
+    public void schedule(int time) {
+        handle = scheduler.schedule(executable, time, TimeUnit.MILLISECONDS);
+    }
+
+    public void cancel() {
+        handle.cancel(true);
+    }
+
+    public Runnable getExecutable() {
+        return executable;
+    }
+
+    public void setExecutable(Runnable runnable) {
+        executable = runnable;
     }
 }

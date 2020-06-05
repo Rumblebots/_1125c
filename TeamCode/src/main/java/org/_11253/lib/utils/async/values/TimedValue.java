@@ -26,24 +26,27 @@
  *
  */
 
-package org._11253.lib.robot.phys.components;
+package org._11253.lib.utils.async.values;
 
-import org._11253.lib.Global;
+import org._11253.lib.utils.async.tasks.RepeatingTask;
 
-/**
- * Template class for components, used internally in org._11253.lib.robot.phys.components package
- */
-public class Component {
-    public Object component;
+public class TimedValue extends RepeatingTask {
+    public Object value;
 
-    /**
-     * Creates a new component, takes a class (component type) as well as
-     * a name (hardware name) for the component.
-     *
-     * @param c    the class name (ie. DcMotor.class)
-     * @param name the name of the device, as it appears on the HardwareMap
-     */
-    public Component(Class<?> c, String name) {
-        component = Global.getHwMap().get(c, name);
+    public TimedValue(Runnable pollValueRunnable, int pollingRate) {
+        setExecutable(pollValueRunnable);
+        scheduleRepeatingTask(pollingRate);
+    }
+
+    private Object pollValue() {
+        return new Object();
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
     }
 }

@@ -26,24 +26,32 @@
  *
  */
 
-package org._11253.lib.robot.phys.components;
+package org._11253.lib.utils.async.tasks;
 
-import org._11253.lib.Global;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Template class for components, used internally in org._11253.lib.robot.phys.components package
- */
-public class Component {
-    public Object component;
+import static org._11253.lib.utils.async.SharedScheduler.scheduler;
 
-    /**
-     * Creates a new component, takes a class (component type) as well as
-     * a name (hardware name) for the component.
-     *
-     * @param c    the class name (ie. DcMotor.class)
-     * @param name the name of the device, as it appears on the HardwareMap
-     */
-    public Component(Class<?> c, String name) {
-        component = Global.getHwMap().get(c, name);
+public class RepeatingTask extends Task {
+    private int delay;
+
+    public RepeatingTask() {
+        super();
+    }
+
+    public RepeatingTask(Runnable runnable) {
+        super(runnable);
+    }
+
+    public void scheduleRepeatingTask(int delay) {
+        handle = scheduler.scheduleAtFixedRate(getExecutable(), 0, delay, TimeUnit.MILLISECONDS);
+    }
+
+    public int getDelay() {
+        return delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 }

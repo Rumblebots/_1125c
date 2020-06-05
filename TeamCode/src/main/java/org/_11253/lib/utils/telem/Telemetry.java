@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 11:34 PM
+ * Copyright last updated on 6/5/20, 11:03 AM
  * Part of the _1125c library
  *
  * **
@@ -60,6 +60,24 @@ import java.util.HashMap;
  *             related functions return Strings, which are the keys that you're using.
  *         </li>
  *     </ul>
+ *     I'm sure as you can tell, based on how incredibly
+ *     shitty & poorly written this code is, I'm not exactly an
+ *     expert with HashMaps just yet, but I hope this will suffice.
+ *     I mean, it makes sense to me, so it's okay, right?
+ *     I'll probably be the only person who's going to be using
+ *     this anyway, so....
+ * </p>
+ * <p>
+ *     As a suggestion for a potential use case, this could be used
+ *     for debugging purposes. Hypothetically, let's say you need
+ *     to determine the last value of EVERY single thing on the entire
+ *     controller or something absolutely absurd. Look, I really don't know.
+ *     But anyway, you could use the permanent telemetry to display every
+ *     value at all times, regardless of what it's current value is.
+ *     Which could be nice, or something, honestly, I'm not too sure.
+ *     Look, if you're seriously planning on using this library, you're
+ *     probably clinically insane enough to be reading this right now
+ *     and be understanding every single word of it anyway.
  * </p>
  */
 public class Telemetry {

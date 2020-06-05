@@ -26,24 +26,11 @@
  *
  */
 
-package org._11253.lib.robot.phys.components;
+package org._11253.lib.utils.async;
 
-import org._11253.lib.Global;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
-/**
- * Template class for components, used internally in org._11253.lib.robot.phys.components package
- */
-public class Component {
-    public Object component;
-
-    /**
-     * Creates a new component, takes a class (component type) as well as
-     * a name (hardware name) for the component.
-     *
-     * @param c    the class name (ie. DcMotor.class)
-     * @param name the name of the device, as it appears on the HardwareMap
-     */
-    public Component(Class<?> c, String name) {
-        component = Global.getHwMap().get(c, name);
-    }
+public class SharedScheduler {
+    public static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 }
