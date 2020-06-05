@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/5/20, 11:14 AM
  * Part of the _1125c library
  *
  * **
@@ -31,6 +31,15 @@ package org._11253.lib.utils.async;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+/**
+ * A single, globally-used scheduler.
+ * <p>
+ * I know global variables are bad and what not, but
+ * to be fair, this library is small enough where I
+ * hopefully won't run into too many issues with global
+ * variables. This shouldn't be an exception.
+ * </p>
+ */
 public class SharedScheduler {
     public static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 }

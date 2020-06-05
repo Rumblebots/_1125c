@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/5/20, 11:14 AM
  * Part of the _1125c library
  *
  * **
@@ -32,6 +32,14 @@ import java.util.concurrent.TimeUnit;
 
 import static org._11253.lib.utils.async.SharedScheduler.scheduler;
 
+/**
+ * Higher-level implementation of a scheduled task.
+ * <p>
+ * This allows you to schedule a task to repeatedly happen, as in
+ * over and over again.
+ * </p>
+ * TODO: add a way to change the initial DELAY before the fixed rate executable runs
+ */
 public class RepeatingTask extends Task {
     private int delay;
 

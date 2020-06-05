@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/5/20, 11:14 AM
  * Part of the _1125c library
  *
  * **
@@ -30,6 +30,15 @@ package org._11253.lib.utils.async.values;
 
 import org._11253.lib.utils.async.tasks.RepeatingTask;
 
+/**
+ * Stores an Object value which is updated periodically.
+ * <p>
+ * Basically a wrapper for RepeatingTask. You probably aren't
+ * really ever going to be using this, but it's here just in
+ * case. You never know, man. You never know.
+ * </p>
+ */
+@Deprecated
 public class TimedValue extends RepeatingTask {
     public Object value;
 

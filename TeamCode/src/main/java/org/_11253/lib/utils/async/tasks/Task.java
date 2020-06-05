@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/5/20, 11:14 AM
  * Part of the _1125c library
  *
  * **
@@ -33,30 +33,78 @@ import java.util.concurrent.TimeUnit;
 
 import static org._11253.lib.utils.async.SharedScheduler.scheduler;
 
+/**
+ * Lowest-level task functionality which provides
+ * a... well, scheduled task. Not much else to
+ * say about this baby.
+ */
 public class Task {
+    /**
+     * Supposed to be an internally used handler.
+     */
     protected ScheduledFuture<?> handle;
+
+    /**
+     * The executable / runnable thing which is run.
+     *
+     * @see Task#getExecutable()
+     * @see Task#setExecutable(Runnable)
+     */
     private Runnable executable;
 
+    /**
+     * Constructor, where if no runnable is provided,
+     * just make it null.
+     * <p>
+     * This should (hopefully) throw an error if the
+     * user attempts to schedule a task with a null
+     * executable, so that should work out
+     * pretty nicely and what not.
+     * </p>
+     */
     public Task() {
         this(null);
     }
 
+    /**
+     * Constructor WITH a runnable.
+     *
+     * @param runnable the runnable to set as the executable
+     */
     public Task(Runnable runnable) {
         executable = runnable;
     }
 
+    /**
+     * Actually schedule the task to occur in the near future
+     *
+     * @param time in how much time (ms) it should occur
+     */
     public void schedule(int time) {
         handle = scheduler.schedule(executable, time, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * Cancel the scheduled task.
+     */
     public void cancel() {
         handle.cancel(true);
     }
 
+    /**
+     * Fetches the current Runnable 'executable'
+     *
+     * @return the current executable
+     */
     public Runnable getExecutable() {
         return executable;
     }
 
+    /**
+     * Set the Runnable 'executable'
+     *
+     * @param runnable the new executable
+     */
     public void setExecutable(Runnable runnable) {
         executable = runnable;
     }
