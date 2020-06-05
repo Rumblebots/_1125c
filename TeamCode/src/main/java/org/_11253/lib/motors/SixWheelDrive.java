@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 1:16 PM
+ * Copyright last updated on 6/5/20, 5:40 PM
  * Part of the _1125c library
  *
  * **
@@ -46,5 +46,23 @@ public class SixWheelDrive {
         frontLeftPower = power;
         midLeftPower = power;
         backLeftPower = power;
+    }
+
+    public SixWheelDrive() {
+        this(0, 0, 0, 0, 0, 0);
+    }
+
+    public SixWheelDrive(double fr,
+                         double mr,
+                         double br,
+                         double fl,
+                         double ml,
+                         double bl) {
+        frontRightPower = fr;
+        midRightPower = mr;
+        backRightPower = br;
+        frontLeftPower = fl;
+        midLeftPower = ml;
+        backLeftPower = bl;
     }
 }
