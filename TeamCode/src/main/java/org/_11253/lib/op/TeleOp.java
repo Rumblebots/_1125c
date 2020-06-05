@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/4/20, 11:31 PM
  * Part of the _1125c library
  *
  * **
@@ -46,6 +46,13 @@ public class TeleOp extends Template {
 
     /**
      * Constructor. Yeah, that's really it.
+     * <p>
+     * Damn, I really feel bad for all the poor
+     * people who might be reading this documentation
+     * for genuine help on what the hell they're doing
+     * wrong. Well, it's not my problem, so...
+     * Good luck to you, brave adventurer!
+     * </p>
      */
     public TeleOp() {
         mapStartButton();
