@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -64,7 +64,7 @@ public class Tank extends TeleOp {
      * cooler... you get what I'm saying.
      * </p>
      */
-    public Shifter divisor = new Shifter(1, 3, 1);
+    public Shifter divisor = new Shifter(2, 3, 1);
 
     /**
      * Simple constructor for Tank class.
@@ -73,6 +73,7 @@ public class Tank extends TeleOp {
      *     <ul>
      *         <li>Runs super() to set up all of the stuff in TeleOp</li>
      *         <li>Adds runnable to onStart which inits the drivetrain and maps controls</li>
+     *         <li>Write telemetry describing the current gear</li>
      *     </ul>
      * </p>
      * <p>
@@ -88,6 +89,13 @@ public class Tank extends TeleOp {
             public void run() {
                 drivetrain.init();
                 mapControls();
+            }
+        });
+
+        onStartRun.add(new Runnable() {
+            @Override
+            public void run() {
+                telem.addData("_1125c_TANK_GEAR", "Current Gear", Integer.toString(divisor.getCurrentGear()));
             }
         });
     }
@@ -106,12 +114,16 @@ public class Tank extends TeleOp {
                 return new Runnable() {
                     @Override
                     public void run() {
-                        drivetrain.setPower(new MotorPower() {
-                            double frontRightPower = controller1.getRightY() / divisor.getCurrentGear();
-                            double frontLeftPower = controller1.getLeftY() / divisor.getCurrentGear();
-                            double backRightPower = controller1.getRightY() / divisor.getCurrentGear();
-                            double backLeftPower = controller1.getLeftX() / divisor.getCurrentGear();
-                        });
+                        telem.addData("_1125c_DRIVING",
+                                "Motors engaged?",
+                                " ",
+                                "True");
+                        drivetrain.setPower(new MotorPower(
+                                controller1.getRightY() / divisor.getCurrentGear(),
+                                controller1.getLeftY() / divisor.getCurrentGear(),
+                                controller1.getRightY() / divisor.getCurrentGear(),
+                                controller1.getLeftY() / divisor.getCurrentGear()
+                        ));
                     }
                 };
             }
@@ -121,12 +133,11 @@ public class Tank extends TeleOp {
                 return new Runnable() {
                     @Override
                     public void run() {
-                        drivetrain.setPower(new MotorPower() {
-                            double frontRightPower = 0;
-                            double frontLeftPower = 0;
-                            double backRightPower = 0;
-                            double backLeftPower = 0;
-                        });
+                        telem.addData("_1125c_DRIVING",
+                                "Motors engaged?",
+                                " ",
+                                "False");
+                        drivetrain.setPower(new MotorPower());
                     }
                 };
             }

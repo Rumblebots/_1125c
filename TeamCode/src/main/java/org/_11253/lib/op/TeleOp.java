@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 11:31 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -55,9 +55,29 @@ public class TeleOp extends Template {
      * </p>
      */
     public TeleOp() {
-        mapStartButton();
         addToStart();
+        mapStartButton();
         addToOnStartRun();
+        addToOnFinishRun();
+    }
+
+    /**
+     * Update telem after run loop finishes
+     * <p>
+     * This should run every single loop to
+     * update the printed telem data to what
+     * the latest telem data is. I know,
+     * so cool. You wish you could be that
+     * cool, but you can't.
+     * </p>
+     */
+    private void addToOnFinishRun() {
+        onFinishRun.add(new Runnable() {
+            @Override
+            public void run() {
+                telem.printTelemetry();
+            }
+        });
     }
 
     /**
@@ -69,32 +89,30 @@ public class TeleOp extends Template {
      * </p>
      */
     private void mapStartButton() {
-        controller1.map.bind(ControllerMap.States.START, new Command() {
+        onStart.add(new Runnable() {
             @Override
-            public Runnable active() {
-                return new Runnable() {
+            public void run() {
+                controller1.map.bind(ControllerMap.States.START, new Command() {
                     @Override
-                    public void run() {
-                        /*
-                         * If the start button is pressed, run the code that's here.
-                         * In this case, all that this code does is add some telem and then update it.
-                         */
-                        Global.getTelem().addLine("The start button is currently pressed!");
-                        Global.getTelem().update();
+                    public Runnable active() {
+                        return new Runnable() {
+                            @Override
+                            public void run() {
+                                telem.addData("start_button", "Start button status", "on");
+                            }
+                        };
                     }
-                };
-            }
 
-            @Override
-            public Runnable inactive() {
-                return new Runnable() {
                     @Override
-                    public void run() {
-                        /*
-                         * If the start button is not pressed, don't do anything at all.
-                         */
+                    public Runnable inactive() {
+                        return new Runnable() {
+                            @Override
+                            public void run() {
+                                telem.addData("start_button", "Start button status", "off");
+                            }
+                        };
                     }
-                };
+                });
             }
         });
     }

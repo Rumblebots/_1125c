@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 11:44 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -31,6 +31,7 @@ package org._11253.lib.op;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org._11253.lib.Global;
 import org._11253.lib.utils.jrep.ListWrapper;
+import org._11253.lib.utils.telem.Telemetry;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,8 @@ import java.util.ArrayList;
  * no internal functions?
  */
 public class Template extends LinearOpMode {
+    public Telemetry telem;
+
     /**
      * List of Runnables to be run before the start of the
      * operation mode. This is before waitForStart() finishes;
@@ -163,6 +166,7 @@ public class Template extends LinearOpMode {
     public final void runOpMode() {
         Global.setHwMap(hardwareMap);
         Global.setTelem(telemetry);
+        telem = new Telemetry();
 
         initOp();
 

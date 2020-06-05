@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 1:16 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -37,4 +37,15 @@ public class MotorPower {
     public double frontLeftPower;
     public double backRightPower;
     public double backLeftPower;
+
+    public MotorPower() {
+        this(0, 0, 0, 0);
+    }
+
+    public MotorPower(double fr, double fl, double br, double bl) {
+        frontRightPower = fr;
+        frontLeftPower = fl;
+        backRightPower = br;
+        backLeftPower = bl;
+    }
 }

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 1:21 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -29,6 +29,7 @@
 package org._11253.lib.robot.phys.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org._11253.lib.utils.math.Math;
 
 /**
@@ -75,5 +76,18 @@ public class Motor extends Component {
         } else {
             dcMotorComponent.setPower(Math.average(power, getPower()));
         }
+    }
+
+    /**
+     * Sets the motor component's direction based on input.
+     * <p>
+     * Usually, left side motors will be inverted.
+     * At least that's what I do.
+     * </p>
+     *
+     * @param direction the new direction
+     */
+    public void setDirection(DcMotorSimple.Direction direction) {
+        dcMotorComponent.setDirection(direction);
     }
 }

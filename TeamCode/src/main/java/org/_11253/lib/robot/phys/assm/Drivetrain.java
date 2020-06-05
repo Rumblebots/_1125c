@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/5/20, 4:17 PM
  * Part of the _1125c library
  *
  * **
@@ -28,6 +28,7 @@
 
 package org._11253.lib.robot.phys.assm;
 
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org._11253.lib.Global;
 import org._11253.lib.motors.MotorPower;
 import org._11253.lib.robot.phys.components.Motor;
@@ -88,5 +89,8 @@ public class Drivetrain extends Subsystem {
         frontLeft.isRound = isRound;
         backRight.isRound = isRound;
         backLeft.isRound = isRound;
+
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 }
