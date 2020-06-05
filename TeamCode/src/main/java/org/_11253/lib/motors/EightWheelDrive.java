@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 1:16 PM
+ * Copyright last updated on 6/5/20, 5:42 PM
  * Part of the _1125c library
  *
  * **
@@ -50,5 +50,28 @@ public class EightWheelDrive {
         frontLeftPower = power;
         backLeftPower = power;
         backBackLeftPower = power;
+    }
+
+    public EightWheelDrive() {
+        this(0, 0, 0, 0,
+                0, 0, 0, 0);
+    }
+
+    public EightWheelDrive(double ffr,
+                           double fr,
+                           double br,
+                           double bbr,
+                           double ffl,
+                           double fl,
+                           double bl,
+                           double bbl) {
+        frontFrontRightPower = ffr;
+        frontRightPower = fr;
+        backRightPower = br;
+        backBackRightPower = bbr;
+        frontFrontLeftPower = ffl;
+        frontLeftPower = fl;
+        backLeftPower = bl;
+        backBackLeftPower = bbl;
     }
 }
