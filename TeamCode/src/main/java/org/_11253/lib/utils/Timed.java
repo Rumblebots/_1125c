@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 6:30 PM
+ * Copyright last updated on 6/5/20, 6:32 PM
  * Part of the _1125c library
  *
  * **
@@ -29,10 +29,20 @@
 package org._11253.lib.utils;
 
 public class Timed implements TimedCore {
+    /**
+     * Don't touch this pretty please...
+     */
     public boolean ran = false;
 
     /**
      * When the timed execution begins.
+     * <p>
+     * This is the very first Runnable which is run.
+     * After the first time the Runnable is run,
+     * this won't execute anymore. You might be looking
+     * for either during or close methods if you
+     * want stuff to happen after that.
+     * </p>
      *
      * @return a runnable containing the timed execution stuff
      */
@@ -47,6 +57,11 @@ public class Timed implements TimedCore {
 
     /**
      * While the timed execution is in progress
+     * <p>
+     *     It's unlikely you're going to be using this,
+     *     but oh well. This is code which is executed every
+     *     single tick, aside from the first and last ticks.
+     * </p>
      *
      * @return a runnable containing the timed execution stuff
      */
@@ -61,6 +76,10 @@ public class Timed implements TimedCore {
 
     /**
      * The final thing that's run when the timed execution closes.
+     * <p>
+     *     This is the last bit of code which is executed before the
+     *     event is deleted from the scheduler for all of eternity.
+     * </p>
      *
      * @return a runnable containing finishing / closing code.
      */
