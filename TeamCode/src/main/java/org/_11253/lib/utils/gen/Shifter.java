@@ -1,11 +1,11 @@
 /*
- * ---
+ * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 8:49 PM
+ * Copyright last updated on 6/4/20, 9:11 PM
  * Part of the _1125c library
  *
- * ---
+ * **
  *
  * Permission is granted, free of charge, to any person obtaining
  * a copy of this software and / or any of it's related source code or
@@ -22,7 +22,7 @@
  * copyright notice included in any source files or forms of documentation
  * which have stemmed or branched off of the original Software.
  *
- * ---
+ * **
  *
  */
 

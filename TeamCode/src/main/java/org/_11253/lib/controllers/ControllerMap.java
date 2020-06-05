@@ -1,11 +1,11 @@
 /*
- * ---
+ * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:02 PM
+ * Copyright last updated on 6/4/20, 9:11 PM
  * Part of the _1125c library
  *
- * ---
+ * **
  *
  * Permission is granted, free of charge, to any person obtaining
  * a copy of this software and / or any of it's related source code or
@@ -22,7 +22,7 @@
  * copyright notice included in any source files or forms of documentation
  * which have stemmed or branched off of the original Software.
  *
- * ---
+ * **
  *
  */
 
@@ -49,6 +49,7 @@ import java.util.Objects;
  */
 public class ControllerMap {
     Gamepad gamepad;
+
     /**
      * A map of all of the commands which should be executed.
      * <p>
@@ -57,6 +58,11 @@ public class ControllerMap {
      */
     private HashMap<States, Command> commandMap = new HashMap<>();
 
+    /**
+     * Constructor function which sets the controller map's gamepad.
+     *
+     * @param gamepad the gamepad which should be used.
+     */
     public ControllerMap(Gamepad gamepad) {
         this.gamepad = gamepad;
     }
