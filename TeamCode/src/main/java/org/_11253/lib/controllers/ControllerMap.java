@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 5:37 PM
  * Part of the _1125c library
  *
  * **
@@ -142,8 +142,7 @@ public class ControllerMap {
      *         <li>"STICK": Right <b>or</b> left stick's X <b>or</b> Y is offset by anything at all</li>
      *     </ul>
      *     This means there is no specific states for left stick offset or right stick offset.
-     *     TODO implement different states for X and Y axes on both sticks
-     *      Add a way to change sensitivity or dead zones on stick movement detections
+     *     TODO: Add a way to change sensitivity or dead zones on stick movement detections
      * </p>
      */
     public enum States {

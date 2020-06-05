@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:30 PM
+ * Copyright last updated on 6/5/20, 5:37 PM
  * Part of the _1125c library
  *
  * **
@@ -27,6 +27,15 @@
  */
 
 package org._11253.lib.utils.gen;
+
+/*
+ * Currently not working!
+ * TODO: Fix Shifter.java
+ *  Gear shifting isn't working. The only gear
+ *  which is possible to use is whatever gear
+ *  the user starts in, which, quite obviously,
+ *  is not what we want a shifter to do.
+ */
 
 /**
  * Basic shifter function.
@@ -79,7 +88,7 @@ public class Shifter {
      *
      * @see Toggle#canBeChanged
      */
-    private boolean canShift;
+    private boolean canShift = true;
 
     /**
      * Default constructor if no min and max gears
@@ -118,6 +127,7 @@ public class Shifter {
     public void onPressShiftUp() {
         if (canShift && currentGear + 1 <= maxGear) {
             currentGear++;
+            canShift = false;
         }
     }
 
@@ -129,6 +139,7 @@ public class Shifter {
     public void onPressShiftDown() {
         if (canShift && currentGear - 1 >= minGear) {
             currentGear--;
+            canShift = false;
         }
     }
 

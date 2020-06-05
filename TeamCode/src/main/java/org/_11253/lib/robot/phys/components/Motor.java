@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 5:37 PM
  * Part of the _1125c library
  *
  * **
@@ -46,11 +46,29 @@ public class Motor extends Component {
      * suddenly or more slowly, based on averaging.
      */
     public boolean isRound;
+
+    /**
+     * A boolean which determines whether or not the
+     * motor will run with encoders.
+     */
+    public boolean isEncoded;
+
+    /**
+     * The actual motor component itself.
+     */
     DcMotor dcMotorComponent;
+
+    /**
+     * Last checked encoder count.
+     */
+    private int count;
+
+    private int differential;
 
     public Motor(String name) {
         super(DcMotor.class, name);
         dcMotorComponent = (DcMotor) component;
+        dcMotorComponent.setMode(DcMotor.RunMode.RUN_USING_ENCODER); // is this required?
     }
 
     /**
@@ -89,5 +107,33 @@ public class Motor extends Component {
      */
     public void setDirection(DcMotorSimple.Direction direction) {
         dcMotorComponent.setDirection(direction);
+    }
+
+    /**
+     * Update the encoder count & return it
+     *
+     * @return the current encoder count
+     */
+    public int getCount() {
+        count = dcMotorComponent.getCurrentPosition() - differential;
+        return count;
+    }
+
+    /**
+     * Set the current encoder count.
+     *
+     * @param count the count to set to
+     */
+    public void setCount(int count) {
+        this.count = count;
+        differential = count - dcMotorComponent.getCurrentPosition();
+    }
+
+    /**
+     * Reset the motor's encoders.
+     */
+    public void resetEncoders() {
+        dcMotorComponent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcMotorComponent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }

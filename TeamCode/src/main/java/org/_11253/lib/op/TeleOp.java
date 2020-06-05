@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 5:37 PM
  * Part of the _1125c library
  *
  * **
@@ -98,7 +98,7 @@ public class TeleOp extends Template {
                         return new Runnable() {
                             @Override
                             public void run() {
-                                telem.addData("start_button", "Start button status", "on");
+                                telem.addData("_1125c_START_BUTTON", "Start button status", "on");
                             }
                         };
                     }
@@ -108,7 +108,7 @@ public class TeleOp extends Template {
                         return new Runnable() {
                             @Override
                             public void run() {
-                                telem.addData("start_button", "Start button status", "off");
+                                telem.addData("_1125c_START_BUTTON", "Start button status", "off");
                             }
                         };
                     }
