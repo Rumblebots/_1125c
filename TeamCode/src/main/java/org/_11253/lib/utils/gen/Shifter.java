@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 12:18 PM
+ * Copyright last updated on 6/5/20, 4:29 PM
  * Part of the _1125c library
  *
  * **
@@ -116,7 +116,7 @@ public class Shifter {
      * @see Toggle#onPress()
      */
     public void onPressShiftUp() {
-        if (canShift && currentGear + 1 <= maxGear) {
+        if (canShift && currentGear + 1 < maxGear) {
             currentGear++;
         }
     }
@@ -127,7 +127,7 @@ public class Shifter {
      * @see Toggle#onPress()
      */
     public void onPressShiftDown() {
-        if (canShift && currentGear - 1 >= minGear) {
+        if (canShift && currentGear - 1 > minGear) {
             currentGear--;
         }
     }

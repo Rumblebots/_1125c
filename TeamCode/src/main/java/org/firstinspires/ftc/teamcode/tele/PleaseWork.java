@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 4:29 PM
  * Part of the _1125c library
  *
  * **
@@ -28,14 +28,13 @@
 
 package org.firstinspires.ftc.teamcode.tele;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.drives.Tank;
 import org._11253.lib.utils.Command;
-import org._11253.lib.utils.telem.Telemetry;
 
+@TeleOp(name = "Telemetry Testing", group = "TeleOp")
 public class PleaseWork extends Tank {
-    private Telemetry telem = new Telemetry();
-
     private void testing() {
         controller1.map.bind(
                 ControllerMap.States.DPAD_DOWN,
@@ -81,8 +80,17 @@ public class PleaseWork extends Tank {
         );
     }
 
-    @Override
-    public void initOp() {
-        testing(); // hopefully bind stuff to controller
+    public PleaseWork() {
+        onStart.add(new Runnable() {
+            @Override
+            public void run() {
+                testing();
+            }
+        });
     }
+
+//    @Override
+//    public void initOp() {
+//        testing(); // hopefully bind stuff to controller
+//    }
 }
