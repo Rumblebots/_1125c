@@ -28,13 +28,27 @@
 
 package org._11253.lib.motors;
 
-/**
- * Basic class / object like thing that contains data on the power for
- * all four drive motors on a typical drive system.
- */
-public class MotorPower {
+public class EightWheelDrive {
+    public double frontFrontRightPower;
     public double frontRightPower;
-    public double frontLeftPower;
     public double backRightPower;
+    public double backBackRightPower;
+    public double frontFrontLeftPower;
+    public double frontLeftPower;
     public double backLeftPower;
+    public double backBackLeftPower;
+
+    public void updateRight(double power) {
+        frontFrontRightPower = power;
+        frontRightPower = power;
+        backRightPower = power;
+        backBackRightPower = power;
+    }
+
+    public void updateLeft(double power) {
+        frontFrontLeftPower = power;
+        frontLeftPower = power;
+        backLeftPower = power;
+        backBackLeftPower = power;
+    }
 }

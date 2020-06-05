@@ -28,13 +28,7 @@
 
 package org._11253.lib.motors;
 
-/**
- * Basic class / object like thing that contains data on the power for
- * all four drive motors on a typical drive system.
- */
-public class MotorPower {
-    public double frontRightPower;
-    public double frontLeftPower;
-    public double backRightPower;
-    public double backLeftPower;
+public class TankDrive {
+    public float rightPower;
+    public float leftPower;
 }
