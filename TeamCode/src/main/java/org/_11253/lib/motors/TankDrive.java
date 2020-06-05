@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 1:16 PM
+ * Copyright last updated on 6/5/20, 5:43 PM
  * Part of the _1125c library
  *
  * **
@@ -29,6 +29,16 @@
 package org._11253.lib.motors;
 
 public class TankDrive {
-    public float rightPower;
-    public float leftPower;
+    public double rightPower;
+    public double leftPower;
+
+    public TankDrive() {
+        this(0, 0);
+    }
+
+    public TankDrive(double right,
+                     double left) {
+        rightPower = right;
+        leftPower = left;
+    }
 }
