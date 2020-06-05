@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/5/20, 1:21 PM
  * Part of the _1125c library
  *
  * **
@@ -34,7 +34,8 @@ import org._11253.lib.utils.math.Math;
 /**
  * An implementation of the default DcMotor.
  * Adds some additional functionality over it, including
- * motor smoothing / rounding (curving the next motor power based on what it is currently
+ * motor smoothing / rounding (curving the next motor
+ * power based on what it is currently
  * and what the next target value is).
  */
 public class Motor extends Component {
