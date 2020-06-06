@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:18 PM
+ * Copyright last updated on 6/6/20, 2:03 PM
  * Part of the _1125c library
  *
  * **
@@ -73,6 +73,10 @@ public class Events {
      * errors. Yay. Exciting, right!!
      * </p>
      * <p>
+     * 'Open' will always run once before close function,
+     * even if the duration is incredibly small (1 or 0)
+     * </p>
+     * <p>
      * TODO: This needs some serious optimization.
      * I couldn't really figure out a much better way of
      * doing what I'm trying to, and this seems to work,
@@ -94,7 +98,7 @@ public class Events {
         for (HashMap.Entry<Long, Timed> entry : events.entrySet()) {
             long key = entry.getKey();
             Timed value = entry.getValue();
-            if (now > key) {
+            if (now > key && value.ran) {
                 toBeClosed.put(key, value);
             } else {
                 if (value.ran) {
