@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 6:30 PM
+ * Copyright last updated on 6/5/20, 9:12 PM
  * Part of the _1125c library
  *
  * **
@@ -51,31 +51,73 @@ public class Events {
      * The Timed object is an extension of TimedCore which
      * just provides a couple Runnables the user can modify.
      * </p>
+     * <p>
+     *     Once again, I know global / static variables are like
+     *     bad or something, but this being static makes it a lot better
+     *     at absolutely everything, of course. 100%.
+     * </p>
      */
     @SuppressLint("UseSparseArrays")
-    public HashMap<Integer, Timed> events = new HashMap<>();
+    public static HashMap<Long, Timed> events = new HashMap<>();
 
     /**
      * (Hopefully) Will run every cycle of a loop. It'll check the
      * time and make sure everything is working out as it should be.
+     * <p>
+     * This uses a mark-and-remove system to avoid concurrent
+     * modification exceptions. It's a little bit slower,
+     * but at least you won't get impossible to fix
+     * errors. Yay. Exciting, right!!
+     * </p>
+     * <p>
+     * TODO: This needs some serious optimization.
+     * I couldn't really figure out a much better way of
+     * doing what I'm trying to, and this seems to work,
+     * but whoever is reading this, if you can figure out
+     * a more efficient way of getting this to run, please
+     * let me know as soon as possible so there's no longer
+     * this absolute monstrosity in the middle of this
+     * relatively clean codebase.
+     * </p>
      */
-    public void tick() {
-        int now = (int) System.currentTimeMillis();
-        for (HashMap.Entry<Integer, Timed> entry : events.entrySet()) {
-            Integer key = entry.getKey();
+    @SuppressLint("UseSparseArrays")
+    public static void tick() {
+        long now = System.currentTimeMillis();
+        HashMap<Long, Timed> toBeOpened1 = new HashMap<>();
+        HashMap<Long, Timed> toBeOpened2 = new HashMap<>();
+        HashMap<Long, Timed> toBeDuring = new HashMap<>();
+        HashMap<Long, Timed> toBeClosed = new HashMap<>();
+        HashMap<Long, Timed> toRemain = new HashMap<>();
+        for (HashMap.Entry<Long, Timed> entry : events.entrySet()) {
+            long key = entry.getKey();
             Timed value = entry.getValue();
-            if (key > now) {
-                value.close().run();
-                events.remove(key);
+            if (now > key) {
+                toBeClosed.put(key, value);
             } else {
                 if (value.ran) {
-                    value.during().run();
+                    toBeDuring.put(key, value);
                 } else {
-                    value.open().run();
-                    value.ran = true;
+                    toBeOpened1.put(key, value);
                 }
-                events.put(key, value);
             }
+        }
+        events = new HashMap<>();
+        for (HashMap.Entry<Long, Timed> entry : toBeOpened1.entrySet()) {
+            long key = entry.getKey();
+            Timed value = entry.getValue();
+            value.ran = true;
+            toBeOpened2.put(key, value);
+        }
+        for (HashMap.Entry<Long, Timed> entry : toBeOpened2.entrySet()) {
+            entry.getValue().open().run();
+            events.put(entry.getKey(), entry.getValue());
+        }
+        for (HashMap.Entry<Long, Timed> entry : toBeDuring.entrySet()) {
+            entry.getValue().during().run();
+            events.put(entry.getKey(), entry.getValue());
+        }
+        for (HashMap.Entry<Long, Timed> entry : toBeClosed.entrySet()) {
+            entry.getValue().close().run();
         }
     }
 
@@ -85,7 +127,7 @@ public class Events {
      * @param duration how long the event should last
      * @param timed    the actual event
      */
-    public void schedule(int duration, Timed timed) {
+    public static void schedule(long duration, Timed timed) {
         schedule(duration, 0, timed);
     }
 
@@ -118,7 +160,7 @@ public class Events {
      * @param delay    how long until the event is propagated
      * @param timed    the actual event which should be run
      */
-    public void schedule(final int duration, int delay, final Timed timed) {
+    public static void schedule(final long duration, int delay, final Timed timed) {
         if (delay != 0) {
             schedule(delay, 0, new Timed() {
                 @Override
@@ -127,11 +169,14 @@ public class Events {
                         @Override
                         public void run() {
                             schedule(duration, 0, timed);
+                            System.out.println("Scheduled post-delay Timed execution!");
                         }
                     };
                 }
             });
+        } else {
+            events.put(System.currentTimeMillis() + duration, timed);
         }
-        events.put((int) System.currentTimeMillis() + duration, timed);
+        tick();
     }
 }

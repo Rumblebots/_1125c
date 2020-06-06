@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 9:12 PM
  * Part of the _1125c library
  *
  * **
@@ -30,7 +30,9 @@ package org._11253.lib.op;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org._11253.lib.Global;
+import org._11253.lib.utils.async.event.Events;
 import org._11253.lib.utils.jrep.ListWrapper;
+import org._11253.lib.utils.math.Math;
 import org._11253.lib.utils.telem.Telemetry;
 
 import java.util.ArrayList;
@@ -45,6 +47,9 @@ import java.util.ArrayList;
  * no internal functions?
  */
 public class Template extends LinearOpMode {
+    public int executionTime = 0;
+    public double avgExecTime = 1;
+
     public Telemetry telem;
 
     /**
@@ -145,6 +150,7 @@ public class Template extends LinearOpMode {
      * it's not my problem to deal with, now is it?
      * </p>
      */
+    @Deprecated
     public void initOp() {
 
     }
@@ -177,11 +183,19 @@ public class Template extends LinearOpMode {
         fOnStart();
 
         while (opModeIsActive()) {
+            executionTime = (int) System.currentTimeMillis();
             fOnStartRun();
 
             fRun();
 
             fOnFinishRun();
+            executionTime = (int) System.currentTimeMillis() - executionTime;
+            avgExecTime = Math.average(executionTime, avgExecTime);
+            telem.addData("_1125c_AVG_EXEC_TIME",
+                    "Average execution time",
+                    (Math.round(avgExecTime * 100) / 100) + "ms");
+
+            Events.tick();
         }
 
         fOnFinishRun();
