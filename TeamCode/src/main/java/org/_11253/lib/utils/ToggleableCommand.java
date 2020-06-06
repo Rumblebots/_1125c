@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 1:22 PM
+ * Copyright last updated on 6/6/20, 2:02 PM
  * Part of the _1125c library
  *
  * **
@@ -77,6 +77,15 @@ public class ToggleableCommand implements CommandCore {
         return isActive;
     }
 
+    public Runnable overrideActive() {
+        return new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        };
+    }
+
     public Runnable active() {
         return new Runnable() {
             @Override
@@ -102,6 +111,7 @@ public class ToggleableCommand implements CommandCore {
      * @return either a new runnable if inactive or the actual runnable if active
      */
     public final Runnable getRunnable(boolean state) {
+        overrideActive().run();
         if (isActive) {
             return state ? active() : inactive();
         } else {
