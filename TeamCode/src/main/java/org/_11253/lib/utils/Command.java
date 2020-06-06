@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 1:19 PM
+ * Copyright last updated on 6/6/20, 1:22 PM
  * Part of the _1125c library
  *
  * **
@@ -71,7 +71,7 @@ public class Command implements CommandCore {
      * @param state true / false, active / inactive
      * @return active or inactive runnable
      */
-    public Runnable getRunnable(boolean state) {
+    public final Runnable getRunnable(boolean state) {
         return state ? active() : inactive();
     }
 }

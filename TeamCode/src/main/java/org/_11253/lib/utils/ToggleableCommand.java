@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 1:19 PM
+ * Copyright last updated on 6/6/20, 1:22 PM
  * Part of the _1125c library
  *
  * **
@@ -45,7 +45,7 @@ package org._11253.lib.utils;
  * starts to matter again (manual override functionality)
  * </p>
  */
-public class ToggleableCommand extends Command {
+public class ToggleableCommand implements CommandCore {
     /**
      * The boolean which determines whether or not
      * the runnable is actually active.
@@ -77,13 +77,31 @@ public class ToggleableCommand extends Command {
         return isActive;
     }
 
+    public Runnable active() {
+        return new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        };
+    }
+
+    public Runnable inactive() {
+        return new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        };
+    }
+
     /**
      * Gets a runnable
      *
      * @param state true / false, active / inactive
      * @return either a new runnable if inactive or the actual runnable if active
      */
-    public Runnable getRunnable(boolean state) {
+    public final Runnable getRunnable(boolean state) {
         if (isActive) {
             return state ? active() : inactive();
         } else {
