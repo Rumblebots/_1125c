@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 9:12 PM
+ * Copyright last updated on 6/5/20, 10:13 PM
  * Part of the _1125c library
  *
  * **
@@ -30,10 +30,13 @@ package org._11253.lib.utils.async.event;
 
 import android.annotation.SuppressLint;
 import org._11253.lib.utils.Timed;
+import org._11253.lib.utils.telem.Telemetry;
 
 import java.util.HashMap;
 
 public class Events {
+    public static long initializationTime = System.currentTimeMillis();
+
     /**
      * A list of all the timed events.
      * <p>
@@ -119,6 +122,7 @@ public class Events {
         for (HashMap.Entry<Long, Timed> entry : toBeClosed.entrySet()) {
             entry.getValue().close().run();
         }
+        Telemetry.addData("_1125c_ASYNC_HANDLES", "Current handles", "" + events.size());
     }
 
     /**

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/5/20, 10:13 PM
  * Part of the _1125c library
  *
  * **
@@ -93,12 +93,12 @@ public class Telemetry {
      * Telem, meaning there will always be a getMessage method.
      * </p>
      */
-    public HashMap<String, Telem> telemetry = new HashMap<String, Telem>();
+    public static HashMap<String, Telem> telemetry = new HashMap<String, Telem>();
     /**
      * The highest number temp there is / can be
      * or whatever the hell it's supposed to be.
      */
-    private int currentTemporaryCap = 0;
+    private static int currentTemporaryCap = 0;
 
     /**
      * Temporary access for telemetry, specifically the
@@ -109,7 +109,7 @@ public class Telemetry {
      * @param data    the data you want
      * @return the key of the newly created thingy
      */
-    public String addData(String caption, String data) {
+    public static String addData(String caption, String data) {
         int number = currentTemporaryCap;
         String name = "temp_" + number;
         addData(name, caption, data);
@@ -130,7 +130,7 @@ public class Telemetry {
      * @param data    the data portion of the data
      * @return the key you're using
      */
-    public String addData(String key, String caption, String data) {
+    public static String addData(String key, String caption, String data) {
         return addData(key, caption, ": ", data);
     }
 
@@ -144,7 +144,7 @@ public class Telemetry {
      * @param data      the actual data portion of the data
      * @return the key you're using
      */
-    public String addData(String key, String caption, String separator, String data) {
+    public static String addData(String key, String caption, String separator, String data) {
         Data dataTelem;
         if (telemetry.containsKey(key)) {
             dataTelem = (Data) telemetry.get(key);
@@ -164,7 +164,7 @@ public class Telemetry {
      * @param line the text you're using.
      * @return the String key.
      */
-    public String addLine(Object line) {
+    public static String addLine(Object line) {
         int number = currentTemporaryCap;
         String name = "temp_" + number;
         currentTemporaryCap++;
@@ -183,7 +183,7 @@ public class Telemetry {
      * @param line the text of the line
      * @return the key which you're using
      */
-    public String addLine(String key, Object line) {
+    public static String addLine(String key, Object line) {
         Line lineTelem;
         if (telemetry.containsKey(key)) {
             lineTelem = (Line) telemetry.get(key);
@@ -200,7 +200,7 @@ public class Telemetry {
      * @param key the key of the data you'd like to remove.
      * @return the key you're using
      */
-    public String removeData(String... key) {
+    public static String removeData(String... key) {
         return remove(key);
     }
 
@@ -210,7 +210,7 @@ public class Telemetry {
      * @param key the key of the line you'd like to remove.
      * @return the key you're using
      */
-    public String removeLine(String... key) {
+    public static String removeLine(String... key) {
         return remove(key);
     }
 
@@ -219,7 +219,7 @@ public class Telemetry {
      *
      * @return string
      */
-    public String remove() {
+    public static String remove() {
         return remove("");
     }
 
@@ -229,7 +229,7 @@ public class Telemetry {
      * @param key varargs argument so you can remove a lot of things.
      * @return the very first key you're removing
      */
-    public String remove(String... key) {
+    public static String remove(String... key) {
         for (String k : key) {
             telemetry.remove(k);
         }
@@ -239,7 +239,7 @@ public class Telemetry {
     /**
      * Clear all of the telemetry.
      */
-    public void clear() {
+    public static void clear() {
         telemetry = new HashMap<String, Telem>();
         currentTemporaryCap = 0;
     }
@@ -253,7 +253,7 @@ public class Telemetry {
      * to use.
      * </p>
      */
-    public void printTelemetry() {
+    public static void printTelemetry() {
         org.firstinspires.ftc.robotcore.external.Telemetry t = Global.getTelem();
         for (HashMap.Entry<String, Telem> entry : telemetry.entrySet()) {
             t.addLine(entry.getValue().getMessage());
@@ -268,7 +268,7 @@ public class Telemetry {
     /**
      * A list of all the possible types.
      */
-    enum Telems { // A list of the different types of telems which are available.
+    public enum Telems { // A list of the different types of telems which are available.
         DATA,     // Contains caption - value pair.
         LINE,     // Contains just a single line of text.
         TELEM,    // The most simple version.

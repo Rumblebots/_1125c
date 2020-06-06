@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 9:12 PM
+ * Copyright last updated on 6/5/20, 10:13 PM
  * Part of the _1125c library
  *
  * **
@@ -191,7 +191,7 @@ public class Template extends LinearOpMode {
             fOnFinishRun();
             executionTime = (int) System.currentTimeMillis() - executionTime;
             avgExecTime = Math.average(executionTime, avgExecTime);
-            telem.addData("_1125c_AVG_EXEC_TIME",
+            Telemetry.addData("_1125c_AVG_EXEC_TIME",
                     "Average execution time",
                     (Math.round(avgExecTime * 100) / 100) + "ms");
 

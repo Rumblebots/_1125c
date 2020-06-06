@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/5/20, 10:13 PM
  * Part of the _1125c library
  *
  * **
@@ -34,6 +34,7 @@ import org._11253.lib.op.TeleOp;
 import org._11253.lib.robot.phys.assm.Drivetrain;
 import org._11253.lib.utils.Command;
 import org._11253.lib.utils.gen.Shifter;
+import org._11253.lib.utils.telem.Telemetry;
 
 /**
  * Short and sweet drive train method which can be extended by other actual op modes.
@@ -95,7 +96,7 @@ public class Tank extends TeleOp {
         onStartRun.add(new Runnable() {
             @Override
             public void run() {
-                telem.addData("_1125c_TANK_GEAR", "Current Gear", Integer.toString(divisor.getCurrentGear()));
+                Telemetry.addData("_1125c_TANK_GEAR", "Current Gear", Integer.toString(divisor.getCurrentGear()));
             }
         });
     }
@@ -114,7 +115,7 @@ public class Tank extends TeleOp {
                 return new Runnable() {
                     @Override
                     public void run() {
-                        telem.addData("_1125c_DRIVING",
+                        Telemetry.addData("_1125c_DRIVING",
                                 "Motors engaged?",
                                 " ",
                                 "True");
@@ -133,7 +134,7 @@ public class Tank extends TeleOp {
                 return new Runnable() {
                     @Override
                     public void run() {
-                        telem.addData("_1125c_DRIVING",
+                        Telemetry.addData("_1125c_DRIVING",
                                 "Motors engaged?",
                                 " ",
                                 "False");
