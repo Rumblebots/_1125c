@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 1:19 PM
+ * Copyright last updated on 6/6/20, 1:23 PM
  * Part of the _1125c library
  *
  * **
@@ -29,7 +29,7 @@
 package org._11253.lib.controllers;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
-import org._11253.lib.utils.Command;
+import org._11253.lib.utils.CommandCore;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -56,7 +56,7 @@ public class ControllerMap {
      * This is interfaced through the functions bind and unbind.
      * </p>
      */
-    private HashMap<States, Command> commandMap = new HashMap<>();
+    private HashMap<States, CommandCore> commandMap = new HashMap<>();
 
     /**
      * Constructor function which sets the controller map's gamepad.
@@ -79,7 +79,7 @@ public class ControllerMap {
      * @param state   a state of the gamepad
      * @param command a function to execute
      */
-    public final void bind(States state, Command command) {
+    public final void bind(States state, CommandCore command) {
         commandMap.remove(state);
         commandMap.put(state, command);
     }
