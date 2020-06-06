@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:16 PM
+ * Copyright last updated on 6/5/20, 10:18 PM
  * Part of the _1125c library
  *
  * **
@@ -173,7 +173,6 @@ public class Events {
                         @Override
                         public void run() {
                             schedule(duration, 0, timed);
-                            System.out.println("Scheduled post-delay Timed execution!");
                         }
                     };
                 }
