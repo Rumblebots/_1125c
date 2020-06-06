@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 9:12 PM
+ * Copyright last updated on 6/5/20, 9:54 PM
  * Part of the _1125c library
  *
  * **
@@ -29,15 +29,181 @@
 package org.firstinspires.ftc.teamcode.tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.drives.Tank;
+import org._11253.lib.motors.MotorPower;
+import org._11253.lib.utils.Command;
 import org._11253.lib.utils.Timed;
 import org._11253.lib.utils.async.event.Events;
 
 @TeleOp(name = "Telemetry Testing", group = "TeleOp")
 public class PleaseWork extends Tank {
+    private boolean doesUserInputMatter = true;
+
     public PleaseWork() {
         super();
         addToOnStart();
+        onStart.add(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        Events.schedule(100, 200, new Timed() {
+                            @Override
+                            public Runnable close() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mapDelaySystem();
+                                    }
+                                };
+                            }
+                        });
+                    }
+                },
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        Events.schedule(100, 100, new Timed() {
+                            @Override
+                            public Runnable close() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mapOtherControls();
+                                    }
+                                };
+                            }
+                        });
+                    }
+                }
+        );
+    }
+
+    private void mapOtherControls() {
+//        controller1.map.unbind(ControllerMap.States.STICK);
+        controller1.map = new ControllerMap(gamepad1);
+//        controller1.map.bind(ControllerMap.States.STICK, new Command() {
+//            @Override
+//            public Runnable active() {
+//                return new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (doesUserInputMatter) {
+//                            telem.addData("_1125c_DRIVING",
+//                                    "Motors engaged?",
+//                                    " ",
+//                                    "True");
+//                            drivetrain.setPower(new MotorPower(
+//                                    controller1.getRightY() / divisor.getCurrentGear(),
+//                                    controller1.getLeftY() / divisor.getCurrentGear(),
+//                                    controller1.getRightY() / divisor.getCurrentGear(),
+//                                    controller1.getLeftY() / divisor.getCurrentGear()
+//                            ));
+//                        } else {
+//                            doesUserInputMatter = true;
+//                        }
+//                    }
+//                };
+//            }
+//
+//            @Override
+//            public Runnable inactive() {
+//                return new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        telem.addData("_1125c_DRIVING",
+//                                "Motors engaged?",
+//                                " ",
+//                                "True");
+//                        drivetrain.setPower(new MotorPower());
+//                    }
+//                };
+//            }
+//        });
+    }
+//        onStart.add(
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mapDelaySystem();
+//                    }
+//                });
+
+    private void mapDelaySystem() {
+        controller1.map.bind(ControllerMap.States.DPAD_RIGHT, new Command() {
+            boolean canBeBound = true;
+
+            @Override
+            public Runnable active() {
+                return new Runnable() {
+                    @Override
+                    public void run() {
+                        Events.schedule(1000, new Timed() {
+                            @Override
+                            public Runnable open() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        drivetrain.setPower(new MotorPower(0.25, 0.25, 0.25, 0.25));
+                                        doesUserInputMatter = false;
+                                    }
+                                };
+                            }
+
+                            @Override
+                            public Runnable close() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        drivetrain.setPower(new MotorPower());
+                                        canBeBound = true;
+                                        doesUserInputMatter = true;
+                                    }
+                                };
+                            }
+                        });
+                        canBeBound = false;
+                    }
+                };
+            }
+        });
+        controller1.map.bind(ControllerMap.States.DPAD_LEFT, new Command() {
+            boolean canBeBound = true;
+
+            @Override
+            public Runnable active() {
+                return new Runnable() {
+                    @Override
+                    public void run() {
+                        Events.schedule(1000, new Timed() {
+                            @Override
+                            public Runnable open() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        drivetrain.setPower(new MotorPower(-0.25, -0.25, -0.25, -0.25));
+                                        doesUserInputMatter = false;
+                                    }
+                                };
+                            }
+
+                            @Override
+                            public Runnable close() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        drivetrain.setPower(new MotorPower());
+                                        canBeBound = true;
+                                        doesUserInputMatter = true;
+                                    }
+                                };
+                            }
+                        });
+                        canBeBound = false;
+                    }
+                };
+            }
+        });
     }
 
     private void addToOnStart() {
