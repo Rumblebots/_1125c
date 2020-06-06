@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:13 PM
+ * Copyright last updated on 6/5/20, 10:16 PM
  * Part of the _1125c library
  *
  * **
@@ -55,9 +55,9 @@ public class Events {
      * just provides a couple Runnables the user can modify.
      * </p>
      * <p>
-     *     Once again, I know global / static variables are like
-     *     bad or something, but this being static makes it a lot better
-     *     at absolutely everything, of course. 100%.
+     * Once again, I know global / static variables are like
+     * bad or something, but this being static makes it a lot better
+     * at absolutely everything, of course. 100%.
      * </p>
      */
     @SuppressLint("UseSparseArrays")

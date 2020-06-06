@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 6:32 PM
+ * Copyright last updated on 6/5/20, 10:16 PM
  * Part of the _1125c library
  *
  * **
@@ -58,9 +58,9 @@ public class Timed implements TimedCore {
     /**
      * While the timed execution is in progress
      * <p>
-     *     It's unlikely you're going to be using this,
-     *     but oh well. This is code which is executed every
-     *     single tick, aside from the first and last ticks.
+     * It's unlikely you're going to be using this,
+     * but oh well. This is code which is executed every
+     * single tick, aside from the first and last ticks.
      * </p>
      *
      * @return a runnable containing the timed execution stuff
@@ -77,8 +77,8 @@ public class Timed implements TimedCore {
     /**
      * The final thing that's run when the timed execution closes.
      * <p>
-     *     This is the last bit of code which is executed before the
-     *     event is deleted from the scheduler for all of eternity.
+     * This is the last bit of code which is executed before the
+     * event is deleted from the scheduler for all of eternity.
      * </p>
      *
      * @return a runnable containing finishing / closing code.

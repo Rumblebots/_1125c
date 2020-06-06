@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 5:40 PM
+ * Copyright last updated on 6/5/20, 10:16 PM
  * Part of the _1125c library
  *
  * **
@@ -36,18 +36,6 @@ public class SixWheelDrive {
     public double midLeftPower;
     public double backLeftPower;
 
-    public void updateRight(double power) {
-        frontRightPower = power;
-        midRightPower = power;
-        backRightPower = power;
-    }
-
-    public void updateLeft(double power) {
-        frontLeftPower = power;
-        midLeftPower = power;
-        backLeftPower = power;
-    }
-
     public SixWheelDrive() {
         this(0, 0, 0, 0, 0, 0);
     }
@@ -64,5 +52,17 @@ public class SixWheelDrive {
         frontLeftPower = fl;
         midLeftPower = ml;
         backLeftPower = bl;
+    }
+
+    public void updateRight(double power) {
+        frontRightPower = power;
+        midRightPower = power;
+        backRightPower = power;
+    }
+
+    public void updateLeft(double power) {
+        frontLeftPower = power;
+        midLeftPower = power;
+        backLeftPower = power;
     }
 }

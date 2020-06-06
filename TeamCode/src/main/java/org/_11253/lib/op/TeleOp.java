@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 5:37 PM
+ * Copyright last updated on 6/5/20, 10:16 PM
  * Part of the _1125c library
  *
  * **
@@ -32,6 +32,7 @@ import org._11253.lib.Global;
 import org._11253.lib.controllers.Controller;
 import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.utils.Command;
+import org._11253.lib.utils.telem.Telemetry;
 
 /**
  * Tele-Op template class which uses the op mode template class.
@@ -75,7 +76,7 @@ public class TeleOp extends Template {
         onFinishRun.add(new Runnable() {
             @Override
             public void run() {
-                telem.printTelemetry();
+                Telemetry.printTelemetry();
             }
         });
     }
@@ -98,7 +99,7 @@ public class TeleOp extends Template {
                         return new Runnable() {
                             @Override
                             public void run() {
-                                telem.addData("_1125c_START_BUTTON", "Start button status", "on");
+                                Telemetry.addData("_1125c_START_BUTTON", "Start button status", "on");
                             }
                         };
                     }
@@ -108,7 +109,7 @@ public class TeleOp extends Template {
                         return new Runnable() {
                             @Override
                             public void run() {
-                                telem.addData("_1125c_START_BUTTON", "Start button status", "off");
+                                Telemetry.addData("_1125c_START_BUTTON", "Start button status", "off");
                             }
                         };
                     }
