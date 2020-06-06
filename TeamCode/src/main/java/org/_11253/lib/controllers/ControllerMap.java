@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 5:37 PM
+ * Copyright last updated on 6/6/20, 1:19 PM
  * Part of the _1125c library
  *
  * **
@@ -69,11 +69,18 @@ public class ControllerMap {
 
     /**
      * Used to map a certain state to a function.
+     * <p>
+     * If the state is already included, and the user is
+     * attempting to overwrite it, the original
+     * state has to be deleted, which is why we remove it
+     * first. If the state isn't there, nothing happens.
+     * </p>
      *
      * @param state   a state of the gamepad
      * @param command a function to execute
      */
     public final void bind(States state, Command command) {
+        commandMap.remove(state);
         commandMap.put(state, command);
     }
 
