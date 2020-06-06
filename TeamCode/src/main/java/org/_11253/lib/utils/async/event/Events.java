@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 2:03 PM
+ * Copyright last updated on 6/6/20, 2:34 PM
  * Part of the _1125c library
  *
  * **
@@ -130,13 +130,24 @@ public class Events {
     }
 
     /**
+     * Another overloaded method for the default scheduler
+     *
+     * @param duration  how long the event should last
+     * @param timed     the actions of the event
+     * @param repeating should the event repeat or not
+     */
+    public static void schedule(long duration, Timed timed, boolean repeating) {
+        schedule(duration, 0, timed, repeating);
+    }
+
+    /**
      * Overloaded method for the default scheduler.
      *
      * @param duration how long the event should last
      * @param timed    the actual event
      */
     public static void schedule(long duration, Timed timed) {
-        schedule(duration, 0, timed);
+        schedule(duration, 0, timed, false);
     }
 
     /**
@@ -163,12 +174,25 @@ public class Events {
      * *** MAKE SURE NOT TO FORGET TO STOP ANYTHING ***
      * ***   YOU NEED TO STOP IN THE CLOSE METHOD!  ***
      * </p>
+     * <p>
+     * Although it might be a little bit annoying, the code
+     * to schedule a timed event is a lot longer. This is mostly
+     * because every timed event actually has to spawn two events
+     * with slightly different expiration dates. And not only that,
+     * but because 'ran' is a boolean stored in the Timed element,
+     * it has to be manually set to false every single time, which
+     * is why I clone the original timed and set the value to false.
+     * If you're reading this and you have a better method of doing
+     * this, please let me know, I'd much rather not have this poorly
+     * written code just lying here.
+     * </p>
      *
-     * @param duration how long the event should last
-     * @param delay    how long until the event is propagated
-     * @param timed    the actual event which should be run
+     * @param duration  how long the event should last
+     * @param delay     how long until the event is propagated
+     * @param timed     the actual event which should be run
+     * @param repeating whether or not the event should repeat
      */
-    public static void schedule(final long duration, int delay, final Timed timed) {
+    public static void schedule(final long duration, int delay, final Timed timed, final boolean repeating) {
         if (delay != 0) {
             schedule(delay, 0, new Timed() {
                 @Override
@@ -176,13 +200,43 @@ public class Events {
                     return new Runnable() {
                         @Override
                         public void run() {
-                            schedule(duration, 0, timed);
+                            schedule(duration, 0, timed, repeating);
                         }
                     };
                 }
-            });
+            }, false);
         } else {
             events.put(System.currentTimeMillis() + duration, timed);
+            if (repeating) {
+                events.put(System.currentTimeMillis() + duration + 1, new Timed() {
+                    @Override
+                    public Runnable close() {
+                        return new Runnable() {
+                            @Override
+                            public void run() {
+                                Timed newTimed = new Timed() {
+                                    @Override
+                                    public Runnable open() {
+                                        return timed.open();
+                                    }
+
+                                    @Override
+                                    public Runnable during() {
+                                        return timed.during();
+                                    }
+
+                                    @Override
+                                    public Runnable close() {
+                                        return timed.close();
+                                    }
+                                };
+                                newTimed.ran = false;
+                                schedule(duration, 0, newTimed, true);
+                            }
+                        };
+                    }
+                });
+            }
         }
         tick();
     }

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 2:02 PM
+ * Copyright last updated on 6/6/20, 2:34 PM
  * Part of the _1125c library
  *
  * **
@@ -85,6 +85,38 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                     @Override
                     public void run() {
                         mapEventControls();
+                    }
+                },
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("STARTED ON_START RUNNING, SCHEDULING EVENT");
+                        Events.schedule(2000, 0, new Timed() {
+                            @Override
+                            public Runnable open() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        System.out.println("Opened!");
+                                    }
+                                };
+                            }
+
+                            @Override
+                            public Runnable during() {
+                                return super.during();
+                            }
+
+                            @Override
+                            public Runnable close() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        System.out.println("Closed!");
+                                    }
+                                };
+                            }
+                        }, true);
                     }
                 }
         );
