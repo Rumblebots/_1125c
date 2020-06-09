@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:16 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -28,6 +28,9 @@
 
 package org._11253.lib.motors;
 
+/**
+ * @author Colin Robertson
+ */
 public class EightWheelDrive {
     public double frontFrontRightPower;
     public double frontRightPower;

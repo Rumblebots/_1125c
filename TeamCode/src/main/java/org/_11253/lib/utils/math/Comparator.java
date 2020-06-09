@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -35,6 +35,7 @@ package org._11253.lib.utils.math;
  * number close enough to this number?' and so on and so forth.
  * It's fairly simple to use, or at least I'd hope so.
  * </p>
+ * @author Colin Robertson
  */
 public class Comparator {
     /**

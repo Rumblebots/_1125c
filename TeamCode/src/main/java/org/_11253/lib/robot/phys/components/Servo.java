@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -31,6 +31,7 @@ package org._11253.lib.robot.phys.components;
 /**
  * Provides an implementation of FTC's default Servo class.
  * This one is obviously better, mostly because it's way cooler.
+ * @author Colin Robertson
  */
 public class Servo extends Component {
     com.qualcomm.robotcore.hardware.Servo servoComponent;

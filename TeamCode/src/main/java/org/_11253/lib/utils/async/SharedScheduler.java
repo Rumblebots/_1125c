@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:14 AM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -39,6 +39,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * hopefully won't run into too many issues with global
  * variables. This shouldn't be an exception.
  * </p>
+ * @author Colin Robertson
  */
 public class SharedScheduler {
     public static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);

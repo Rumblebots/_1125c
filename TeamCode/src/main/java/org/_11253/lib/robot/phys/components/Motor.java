@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 5:37 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -38,6 +38,7 @@ import org._11253.lib.utils.math.Math;
  * motor smoothing / rounding (curving the next motor
  * power based on what it is currently
  * and what the next target value is).
+ * @author Colin Robertson
  */
 public class Motor extends Component {
     /**

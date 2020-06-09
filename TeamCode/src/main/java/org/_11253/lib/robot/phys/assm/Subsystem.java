@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -38,6 +38,7 @@ import org._11253.lib.utils.gen.id.IdRegister;
  * While creating a sub-system, making sure that components do not have
  * a value set until the init function runs.
  * </p>
+ * @author Colin Robertson
  */
 public abstract class Subsystem {
     /*

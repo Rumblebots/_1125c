@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 11:31 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -30,6 +30,7 @@ package org._11253.lib.utils.telem;
 
 /**
  * A wrapper for Telem to further abstract it.
+ * @author Colin Robertson
  */
 public class Line extends Telem {
     public Line() {

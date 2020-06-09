@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 5:37 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -28,15 +28,6 @@
 
 package org._11253.lib.utils.gen;
 
-/*
- * Currently not working!
- * TODO: Fix Shifter.java
- *  Gear shifting isn't working. The only gear
- *  which is possible to use is whatever gear
- *  the user starts in, which, quite obviously,
- *  is not what we want a shifter to do.
- */
-
 /**
  * Basic shifter function.
  * <p>
@@ -44,6 +35,7 @@ package org._11253.lib.utils.gen;
  * If you really need this to be explained, there's a little
  * bit of an issue. But, to be fair, why the hell are you looking at this anyway?
  * </p>
+ * @author Colin Robertson
  */
 public class Shifter {
     /**

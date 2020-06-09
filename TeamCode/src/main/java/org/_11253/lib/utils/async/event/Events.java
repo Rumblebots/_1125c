@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 2:34 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -34,6 +34,10 @@ import org._11253.lib.utils.telem.Telemetry;
 
 import java.util.HashMap;
 
+/**
+ * Provides a custom asynchronous scheduler.
+ * @author Colin Robertson
+ */
 public class Events {
     public static long initializationTime = System.currentTimeMillis();
 

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:03 AM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -39,6 +39,7 @@ import org._11253.lib.utils.async.tasks.RepeatingTask;
  * through an asynchronous task to make sure you're not
  * polling them too much.
  * </p>
+ * @author Colin Robertson
  */
 public class Color extends Component {
     /**

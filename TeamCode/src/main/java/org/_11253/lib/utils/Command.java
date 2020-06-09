@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 1:22 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -35,6 +35,7 @@ package org._11253.lib.utils;
  * I really can't think of too many other purposes, but yeah,
  * you get what I'm saying.
  * </p>
+ * @author Colin Robertson
  */
 public class Command implements CommandCore {
     /**

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:16 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -40,6 +40,7 @@ import org._11253.lib.utils.telem.Telemetry;
  * Provides a very simple extension of the default operation mode template.
  * There's really not much else it does. Yeah, that's it. Exciting, I know.
  * </p>
+ * @author Colin Robertson
  */
 public class TeleOp extends Template {
     public Controller controller1;

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/4/20, 9:11 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -35,6 +35,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
  * <p>
  * This provides some additional functionality over the default gamepad.
  * </p>
+ * @author Colin Robertson
  */
 public class Controller {
     /**

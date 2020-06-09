@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -31,6 +31,7 @@ package org._11253.lib.motors;
 /**
  * Basic class / object like thing that contains data on the power for
  * all four drive motors on a typical drive system.
+ * @author Colin Robertson
  */
 public class MotorPower {
     public double frontRightPower;

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 4:17 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -45,6 +45,7 @@ import org._11253.lib.robot.phys.components.Motor;
  *         <li>backLeftName</li>
  *     </ul>
  * </p>
+ * @author Colin Robertson
  */
 public class Drivetrain extends Subsystem {
     public static Motor frontRight;

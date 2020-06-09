@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/6/20, 2:34 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -32,13 +32,16 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org._11253.lib.controllers.ControllerMap;
 import org._11253.lib.motors.MotorPower;
 import org._11253.lib.robot.phys.assm.Drivetrain;
+import org._11253.lib.robot.phys.components.sensors.Distance;
 import org._11253.lib.utils.Timed;
 import org._11253.lib.utils.ToggleableCommand;
 import org._11253.lib.utils.async.event.Events;
+import org._11253.lib.utils.telem.Telemetry;
 
 @TeleOp(name = "Telemetry Testing", group = "TeleOp")
 public class PleaseWork extends org._11253.lib.op.TeleOp {
     Drivetrain drivetrain = new Drivetrain();
+    Distance distance;
 
     private ToggleableCommand driveCommand = new ToggleableCommand() {
         @Override
@@ -90,29 +93,14 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                 new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("STARTED ON_START RUNNING, SCHEDULING EVENT");
-                        Events.schedule(2000, 0, new Timed() {
+                        distance = new Distance("distanceSensorRight");
+                        Events.schedule(1300, 0, new Timed() {
                             @Override
                             public Runnable open() {
                                 return new Runnable() {
                                     @Override
                                     public void run() {
-                                        System.out.println("Opened!");
-                                    }
-                                };
-                            }
-
-                            @Override
-                            public Runnable during() {
-                                return super.during();
-                            }
-
-                            @Override
-                            public Runnable close() {
-                                return new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        System.out.println("Closed!");
+                                        Telemetry.addData("_1125c_DISTANCE_SENSOR_TEST", "Distance sensor reading (right)", distance.map.inch() + "");
                                     }
                                 };
                             }

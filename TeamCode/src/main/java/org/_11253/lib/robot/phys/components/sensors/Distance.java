@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 11:52 AM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -30,6 +30,8 @@ package org._11253.lib.robot.phys.components.sensors;
 
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import org._11253.lib.robot.phys.components.Component;
+import org._11253.lib.utils.Timed;
+import org._11253.lib.utils.async.event.Events;
 import org._11253.lib.utils.async.tasks.RepeatingTask;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -49,6 +51,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * to your likings, just don't blame me if something goes
  * absolutely horribly & miserably wrong.
  * </p>
+ * @author Colin Robertson
  */
 public class Distance extends Component {
     public DistanceMap map;
@@ -56,26 +59,27 @@ public class Distance extends Component {
     DistanceSensor sensor;
 
     /**
-     * Create a new repeating task to update the value once
-     * every so often.
+     * Creates a new Distance sensor.
      * <p>
-     * Currently, as of 6/5/2020 at 11:51 AM, this
-     * value is 100 milliseconds. I don't have a robot
-     * with me, so I can't test and make sure this
-     * is good enough, but I'm really hoping it is.
+     * This also schedules a repeating event.
      * </p>
+     *
+     * @param name the name of the sensor.
      */
-    RepeatingTask task = new RepeatingTask(new Runnable() {
-        @Override
-        public void run() {
-            update();
-        }
-    });
-
     public Distance(String name) {
         super(DistanceSensor.class, name);
         sensor = (DistanceSensor) component;
-        task.scheduleRepeatingTask(100); // TODO: make sure this value is good enough
+        Events.schedule(600, 0, new Timed() {
+            @Override
+            public Runnable open() {
+                return new Runnable() {
+                    @Override
+                    public void run() {
+                        update();
+                    }
+                };
+            }
+        }, true);
     }
 
     /**
@@ -117,9 +121,9 @@ public class Distance extends Component {
     private DistanceMap read() {
         return new DistanceMap(
                 getDistanceCm(),
-                getDistanceIn(),
-                getDistanceM(),
-                getDistanceMm()
+                0,
+                0,
+                0
         );
     }
 
@@ -136,9 +140,9 @@ public class Distance extends Component {
 
         public DistanceMap(double cm, double inch, double meter, double mm) {
             this.Cm = cm;
-            this.Inch = inch;
-            this.Meter = meter;
-            this.Mm = mm;
+            this.Inch = cm * 0.393701;
+            this.Meter = cm * 0.01;
+            this.Mm = cm * 10;
         }
 
         public DistanceMap getDistanceMap() {

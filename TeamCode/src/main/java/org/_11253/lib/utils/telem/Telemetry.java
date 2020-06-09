@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:13 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -79,6 +79,7 @@ import java.util.HashMap;
  *     probably clinically insane enough to be reading this right now
  *     and be understanding every single word of it anyway.
  * </p>
+ * @author Colin Robertson
  */
 public class Telemetry {
     /**

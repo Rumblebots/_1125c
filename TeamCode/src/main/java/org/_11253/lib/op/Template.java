@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/5/20, 10:13 PM
+ * Copyright last updated on 6/9/20, 5:49 PM
  * Part of the _1125c library
  *
  * **
@@ -45,6 +45,7 @@ import java.util.ArrayList;
  * TODO try to see if there's a better method of fucking with the lists -
  * maybe see about making them objects so the code here is smaller and there's
  * no internal functions?
+ * @author Colin Robertson
  */
 public class Template extends LinearOpMode {
     public int executionTime = 0;
