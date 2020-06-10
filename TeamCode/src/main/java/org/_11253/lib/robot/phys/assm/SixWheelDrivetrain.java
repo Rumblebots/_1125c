@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 6:30 PM
  * Part of the _1125c library
  *
  * **
@@ -28,6 +28,7 @@
 
 package org._11253.lib.robot.phys.assm;
 
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org._11253.lib.Global;
 import org._11253.lib.motors.SixWheelDrive;
 import org._11253.lib.robot.phys.components.Motor;
@@ -132,5 +133,9 @@ public class SixWheelDrivetrain extends Subsystem {
         backRight.isRound = isRound;
         frontLeft.isRound = isRound;
         backLeft.isRound = isRound;
+
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        midLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 }

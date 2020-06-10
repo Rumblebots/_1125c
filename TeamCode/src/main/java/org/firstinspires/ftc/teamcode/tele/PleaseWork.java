@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 3:59 PM
+ * Copyright last updated on 6/10/20, 6:30 PM
  * Part of the _1125c library
  *
  * **
@@ -29,16 +29,18 @@
 package org.firstinspires.ftc.teamcode.tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org._11253.lib.drives.Meccanum;
 import org._11253.lib.utils.Timed;
+import org._11253.lib.utils.async.event.StringEvents;
 
 @TeleOp(name = "Testing & Demonstration", group = "TeleOp")
-public class PleaseWork extends org._11253.lib.op.TeleOp {
+public class PleaseWork extends Meccanum {
     public PleaseWork() {
         onStart.add(
                 new Runnable() {
                     @Override
                     public void run() {
-                        events.schedule("test", 1000, 1000, new Timed() {
+                        StringEvents.schedule("test", 1000, 1000, new Timed() {
                             @Override
                             public Runnable close() {
                                 return new Runnable() {
@@ -49,7 +51,7 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                                 };
                             }
                         }, false);
-                        events.schedule("test", 1000, 1000, new Timed() {
+                        StringEvents.schedule("test", 1000, 1000, new Timed() {
                             @Override
                             public Runnable close() {
                                 return new Runnable() {
@@ -60,7 +62,7 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                                 };
                             }
                         }, true);
-                        events.schedule("test", 2000, 1000, new Timed() {
+                        StringEvents.schedule("test", 2000, 1000, new Timed() {
                             @Override
                             public Runnable close() {
                                 return new Runnable() {
@@ -71,7 +73,7 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                                 };
                             }
                         }, true);
-                        events.schedule("test2", 1000, 1000, new Timed() {
+                        StringEvents.schedule("test2", 1000, 1000, new Timed() {
                             @Override
                             public Runnable close() {
                                 return new Runnable() {
@@ -82,7 +84,7 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                                 };
                             }
                         }, true);
-                        events.schedule("test2", 2000, 1000, new Timed() {
+                        StringEvents.schedule("test2", 2000, 1000, new Timed() {
                             @Override
                             public Runnable close() {
                                 return new Runnable() {

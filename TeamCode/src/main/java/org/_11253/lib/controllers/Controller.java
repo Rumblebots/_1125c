@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 6:30 PM
  * Part of the _1125c library
  *
  * **
@@ -68,12 +68,30 @@ public class Controller {
     }
 
     /**
+     * Get the left stick's inverted x value
+     *
+     * @return right stick's y value
+     */
+    public final double getInvLeftX() {
+        return -gamepad.left_stick_x;
+    }
+
+    /**
      * Get the left stick's y value
      *
      * @return left stick's y value
      */
     public final double getLeftY() {
         return gamepad.left_stick_y;
+    }
+
+    /**
+     * Get the left stick's inverted y value
+     *
+     * @return right stick's y value
+     */
+    public final double getInvLeftY() {
+        return -gamepad.left_stick_y;
     }
 
     /**
@@ -86,12 +104,30 @@ public class Controller {
     }
 
     /**
+     * Get the right stick's x value
+     *
+     * @return right stick's y value
+     */
+    public final double getInvRightX() {
+        return -gamepad.right_stick_x;
+    }
+
+    /**
      * Get the right stick's y value
      *
      * @return right stick's y value
      */
     public final double getRightY() {
         return gamepad.right_stick_y;
+    }
+
+    /**
+     * Get the right stick's y value
+     *
+     * @return right stick's y value
+     */
+    public final double getInvRightY() {
+        return -gamepad.right_stick_y;
     }
 
     /**
