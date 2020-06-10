@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 3:59 PM
  * Part of the _1125c library
  *
  * **
@@ -30,7 +30,7 @@ package org._11253.lib.op;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org._11253.lib.Global;
-import org._11253.lib.utils.async.event.Events;
+import org._11253.lib.utils.async.event.StringEvents;
 import org._11253.lib.utils.jrep.ListWrapper;
 import org._11253.lib.utils.math.Math;
 import org._11253.lib.utils.telem.Telemetry;
@@ -52,6 +52,7 @@ public class Template extends LinearOpMode {
     public double avgExecTime = 1;
 
     public Telemetry telem;
+    public StringEvents events = new StringEvents();
 
     /**
      * List of Runnables to be run before the start of the
@@ -196,7 +197,7 @@ public class Template extends LinearOpMode {
                     "Average execution time",
                     (Math.round(avgExecTime * 100) / 100) + "ms");
 
-            Events.tick();
+            events.tick();
         }
 
         fOnFinishRun();

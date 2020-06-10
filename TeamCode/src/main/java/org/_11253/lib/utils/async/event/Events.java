@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 3:59 PM
  * Part of the _1125c library
  *
  * **
@@ -30,16 +30,21 @@ package org._11253.lib.utils.async.event;
 
 import android.annotation.SuppressLint;
 import org._11253.lib.utils.Timed;
-import org._11253.lib.utils.telem.Telemetry;
 
 import java.util.HashMap;
 
 /**
  * Provides a custom asynchronous scheduler.
+ * <p>
+ * TODO: Add a way to query / set based on a string 'over key.'
+ * </p>
+ *
  * @author Colin Robertson
  */
 public class Events {
-    public static long initializationTime = System.currentTimeMillis();
+    public static Events Events = new Events();
+
+    public long initializationTime = System.currentTimeMillis();
 
     /**
      * A list of all the timed events.
@@ -65,7 +70,28 @@ public class Events {
      * </p>
      */
     @SuppressLint("UseSparseArrays")
-    public static HashMap<Long, Timed> events = new HashMap<>();
+    public HashMap<Long, Timed> events = new HashMap<>();
+
+    public static Timed getNewTimed(final Timed oldTimed) {
+        Timed newTimed = new Timed() {
+            @Override
+            public Runnable open() {
+                return oldTimed.open();
+            }
+
+            @Override
+            public Runnable during() {
+                return oldTimed.during();
+            }
+
+            @Override
+            public Runnable close() {
+                return oldTimed.close();
+            }
+        };
+        newTimed.ran = false;
+        return newTimed;
+    }
 
     /**
      * (Hopefully) Will run every cycle of a loop. It'll check the
@@ -92,7 +118,7 @@ public class Events {
      * </p>
      */
     @SuppressLint("UseSparseArrays")
-    public static void tick() {
+    public void tick() {
         long now = System.currentTimeMillis();
         HashMap<Long, Timed> toBeOpened1 = new HashMap<>();
         HashMap<Long, Timed> toBeOpened2 = new HashMap<>();
@@ -130,7 +156,6 @@ public class Events {
         for (HashMap.Entry<Long, Timed> entry : toBeClosed.entrySet()) {
             entry.getValue().close().run();
         }
-        Telemetry.addData("_1125c_ASYNC_HANDLES", "Current handles", "" + events.size());
     }
 
     /**
@@ -140,7 +165,7 @@ public class Events {
      * @param timed     the actions of the event
      * @param repeating should the event repeat or not
      */
-    public static void schedule(long duration, Timed timed, boolean repeating) {
+    public void schedule(long duration, Timed timed, boolean repeating) {
         schedule(duration, 0, timed, repeating);
     }
 
@@ -150,7 +175,7 @@ public class Events {
      * @param duration how long the event should last
      * @param timed    the actual event
      */
-    public static void schedule(long duration, Timed timed) {
+    public void schedule(long duration, Timed timed) {
         schedule(duration, 0, timed, false);
     }
 
@@ -196,7 +221,7 @@ public class Events {
      * @param timed     the actual event which should be run
      * @param repeating whether or not the event should repeat
      */
-    public static void schedule(final long duration, int delay, final Timed timed, final boolean repeating) {
+    public void schedule(final long duration, int delay, final Timed timed, final boolean repeating) {
         if (delay != 0) {
             schedule(delay, 0, new Timed() {
                 @Override
@@ -210,38 +235,43 @@ public class Events {
                 }
             }, false);
         } else {
-            events.put(System.currentTimeMillis() + duration, timed);
+            if (events.containsKey(System.currentTimeMillis() + duration)) {
+                long st = System.currentTimeMillis() + duration + 1;
+                boolean hasBeenSlotted = false;
+                while (!hasBeenSlotted) {
+                    if (!events.containsKey(st)) {
+                        events.put(st, timed);
+                        hasBeenSlotted = true;
+                    } else {
+                        st++;
+                    }
+                }
+            } else {
+                events.put(System.currentTimeMillis() + duration, timed);
+            }
             if (repeating) {
-                events.put(System.currentTimeMillis() + duration + 1, new Timed() {
-                    @Override
-                    public Runnable close() {
-                        return new Runnable() {
+                long st = System.currentTimeMillis() + duration;
+                boolean hasBeenSlotted = false;
+                while (!hasBeenSlotted) {
+                    if (!events.containsKey(st)) {
+                        events.put(st, new Timed() {
                             @Override
-                            public void run() {
-                                Timed newTimed = new Timed() {
+                            public Runnable close() {
+                                return new Runnable() {
                                     @Override
-                                    public Runnable open() {
-                                        return timed.open();
-                                    }
-
-                                    @Override
-                                    public Runnable during() {
-                                        return timed.during();
-                                    }
-
-                                    @Override
-                                    public Runnable close() {
-                                        return timed.close();
+                                    public void run() {
+                                        schedule(duration, 0, getNewTimed(timed), true);
                                     }
                                 };
-                                newTimed.ran = false;
-                                schedule(duration, 0, newTimed, true);
                             }
-                        };
+                        });
+                        hasBeenSlotted = true;
+                    } else {
+                        st++;
                     }
-                });
+                }
             }
+            tick();
         }
-        tick();
     }
 }

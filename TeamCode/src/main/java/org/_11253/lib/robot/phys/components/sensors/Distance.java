@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 3:59 PM
  * Part of the _1125c library
  *
  * **
@@ -69,7 +69,7 @@ public class Distance extends Component {
     public Distance(String name) {
         super(DistanceSensor.class, name);
         sensor = (DistanceSensor) component;
-        Events.schedule(600, 0, new Timed() {
+        Events.Events.schedule(600, 0, new Timed() {
             @Override
             public Runnable open() {
                 return new Runnable() {

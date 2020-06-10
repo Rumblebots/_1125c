@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 10:12 PM
+ * Copyright last updated on 6/10/20, 3:59 PM
  * Part of the _1125c library
  *
  * **
@@ -28,8 +28,6 @@
 
 package org._11253.lib.utils;
 
-import org._11253.lib.utils.async.event.Events;
-
 /**
  * A type of command which runs while a condition is true.
  * <p>
@@ -49,63 +47,66 @@ import org._11253.lib.utils.async.event.Events;
  * @author Colin Robertson
  */
 public class WhileCommand {
-    /**
-     * Internally used running command.
-     * <p>
-     * This is the part which actually interacts
-     * with the events interface to schedule events
-     * to run a little bit later. The user doesn't
-     * have to worry about any of that, because I'm
-     * just so incredibly polite.
-     * </p>
-     *
-     * @param runnable the runnable which should be run.
-     */
-    private void _run(Runnable runnable) {
-        if (check()) {
-            Events.schedule(10, new Timed() {
-                @Override
-                public Runnable close() {
-                    return new Runnable() {
-                        @Override
-                        public void run() {
-                            active().run();
-                            _run(active());
-                        }
-                    };
-                }
-            });
-        }
-    }
-
-    /**
-     * **must** be overriden by user, it's the code that actually runs.
-     *
-     * @return a runnable to run
-     */
-    public Runnable active() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-    }
-
-    /**
-     * Check function. The user should override this with
-     * whatever state they want.
-     *
-     * @return whether it's true or not
-     */
-    public boolean check() {
-        return true;
-    }
-
-    /**
-     * Actually schedule the command itself
-     */
-    public final void scheduleWhileCommand() {
-        _run(active());
-    }
+//    public static int count = 0;
+//
+//    /**
+//     * Internally used running command.
+//     * <p>
+//     * This is the part which actually interacts
+//     * with the events interface to schedule events
+//     * to run a little bit later. The user doesn't
+//     * have to worry about any of that, because I'm
+//     * just so incredibly polite.
+//     * </p>
+//     *
+//     * @param runnable the runnable which should be run.
+//     */
+//    private void _run(Runnable runnable) {
+//        if (check()) {
+//            Events.schedule(10, count, new Timed() {
+//                @Override
+//                public Runnable close() {
+//                    return new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            active().run();
+//                            _run(active());
+//                        }
+//                    };
+//                }
+//            }, false);
+//        }
+//    }
+//
+//    /**
+//     * **must** be overriden by user, it's the code that actually runs.
+//     *
+//     * @return a runnable to run
+//     */
+//    public Runnable active() {
+//        return new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        };
+//    }
+//
+//    /**
+//     * Check function. The user should override this with
+//     * whatever state they want.
+//     *
+//     * @return whether it's true or not
+//     */
+//    public boolean check() {
+//        return true;
+//    }
+//
+//    /**
+//     * Actually schedule the command itself
+//     */
+//    public final void scheduleWhileCommand() {
+//        _run(active());
+//        count++;
+//    }
 }
