@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 5:25 PM
  * Part of the _1125c library
  *
  * **
@@ -46,7 +46,7 @@ package org._11253.lib.utils;
  * </p>
  * @author Colin Robertson
  */
-public class ToggleableCommand implements CommandCore {
+public abstract class ToggleableCommand implements CommandCore {
     /**
      * The boolean which determines whether or not
      * the runnable is actually active.
@@ -87,23 +87,9 @@ public class ToggleableCommand implements CommandCore {
         };
     }
 
-    public Runnable active() {
-        return new Runnable() {
-            @Override
-            public void run() {
+    public abstract Runnable active();
 
-            }
-        };
-    }
-
-    public Runnable inactive() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-    }
+    public abstract Runnable inactive();
 
     /**
      * Gets a runnable

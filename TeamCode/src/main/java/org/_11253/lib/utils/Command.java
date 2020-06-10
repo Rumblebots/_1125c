@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 5:25 PM
  * Part of the _1125c library
  *
  * **
@@ -35,36 +35,23 @@ package org._11253.lib.utils;
  * I really can't think of too many other purposes, but yeah,
  * you get what I'm saying.
  * </p>
+ *
  * @author Colin Robertson
  */
-public class Command implements CommandCore {
+public abstract class Command implements CommandCore {
     /**
      * What's run when ACTIVE state is determined.
      *
      * @return runnable, for the active state.
      */
-    public Runnable active() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-    }
+    public abstract Runnable active();
 
     /**
      * What's run when INACTIVE state is determined.
      *
      * @return runnable, for the inactive state.
      */
-    public Runnable inactive() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-    }
+    public abstract Runnable inactive();
 
     /**
      * Returns whichever runnable is appropriate based on the input.
