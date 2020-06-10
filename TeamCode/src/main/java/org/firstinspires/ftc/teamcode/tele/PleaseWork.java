@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/9/20, 10:12 PM
  * Part of the _1125c library
  *
  * **
@@ -35,10 +35,18 @@ import org._11253.lib.robot.phys.assm.Drivetrain;
 import org._11253.lib.robot.phys.components.sensors.Distance;
 import org._11253.lib.utils.Timed;
 import org._11253.lib.utils.ToggleableCommand;
+import org._11253.lib.utils.WhileCommand;
 import org._11253.lib.utils.async.event.Events;
 import org._11253.lib.utils.telem.Telemetry;
 
-@TeleOp(name = "Telemetry Testing", group = "TeleOp")
+/**
+ * Demonstrates / example-s how a bunch of stuff works.
+ * <p>
+ * This is a somewhat real-world instance of how
+ * this library would be used in a legitimate context.
+ * </p>
+ */
+@TeleOp(name = "Testing & Demonstration", group = "TeleOp")
 public class PleaseWork extends org._11253.lib.op.TeleOp {
     Drivetrain drivetrain = new Drivetrain();
     Distance distance;
@@ -100,11 +108,37 @@ public class PleaseWork extends org._11253.lib.op.TeleOp {
                                 return new Runnable() {
                                     @Override
                                     public void run() {
-                                        Telemetry.addData("_1125c_DISTANCE_SENSOR_TEST", "Distance sensor reading (right)", distance.map.inch() + "");
+                                        Telemetry.addData(
+                                                "_1125c_DISTANCE_SENSOR_TEST",
+                                                "Distance sensor reading (right)",
+                                                distance.map.inch() + ""
+                                        );
                                     }
                                 };
                             }
                         }, true);
+                    }
+                },
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        WhileCommand testWhileCommand = new WhileCommand() {
+                            @Override
+                            public boolean check() {
+                                return distance.map.inch() > 10;
+                            }
+
+                            @Override
+                            public Runnable active() {
+                                return new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        System.out.println("Still running!");
+                                    }
+                                };
+                            }
+                        };
+                        testWhileCommand.scheduleWhileCommand();
                     }
                 }
         );
