@@ -22,6 +22,10 @@ I wrote this library because I'm passionate about programming, robotics, and
 the FIRST Tech Challenge, and this gives me a fantastic opportunity
 to implement all three of those in a single project.
 
+### Contributing
+If you'd like to help out, feel free to do so. You can (and probably should) also
+add yourself as an author in the JavaDocs of the files you modify. Yay!!
+
 ### Documentation
 Documentation is, for the most part, provided within the library. Just about
 everything is attached to a JavaDoc, so nothing should be at all hard to 
