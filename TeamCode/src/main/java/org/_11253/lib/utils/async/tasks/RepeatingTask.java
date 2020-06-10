@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/9/20, 8:36 PM
  * Part of the _1125c library
  *
  * **
@@ -41,6 +41,7 @@ import static org._11253.lib.utils.async.SharedScheduler.scheduler;
  * TODO: add a way to change the initial DELAY before the fixed rate executable runs
  * @author Colin Robertson
  */
+@Deprecated
 public class RepeatingTask extends Task {
     private int delay;
 

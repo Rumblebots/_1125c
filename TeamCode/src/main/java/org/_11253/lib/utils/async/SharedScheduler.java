@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/9/20, 8:36 PM
  * Part of the _1125c library
  *
  * **
@@ -41,6 +41,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * </p>
  * @author Colin Robertson
  */
+@Deprecated
 public class SharedScheduler {
     public static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 }
