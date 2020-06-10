@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 4:48 PM
+ * Copyright last updated on 6/10/20, 5:09 PM
  * Part of the _1125c library
  *
  * **
@@ -42,7 +42,6 @@ import java.util.Objects;
  * I'm a little tired right now, so these docs might not be entirely
  * coherent, but... good luck. That's all I'm saying.
  * </p>
- * TODO: consider making this static?
  *
  * @author Colin Robertson
  */
@@ -60,7 +59,7 @@ public class StringEvents {
      * they're repeating.
      * </p>
      */
-    public HashMap<String, Events> events = new HashMap<>();
+    public static HashMap<String, Events> events = new HashMap<>();
 
     /**
      * Tick function which ticks all the event schedulers.
@@ -94,11 +93,11 @@ public class StringEvents {
      * @param timed        the actual timed element which should be executed
      * @param shouldRepeat whether or not the event should repeat itself
      */
-    public final void schedule(final String name,
-                               final long duration,
-                               final long delay,
-                               final Timed timed,
-                               final boolean shouldRepeat) {
+    public static final void schedule(final String name,
+                                      final long duration,
+                                      final long delay,
+                                      final Timed timed,
+                                      final boolean shouldRepeat) {
         if (events.containsKey(name)) {
             Events ev = events.get(name);
             assert ev != null;
@@ -123,7 +122,7 @@ public class StringEvents {
      *
      * @param name the key to delete
      */
-    public final void clear(final String name) {
+    public static final void clear(final String name) {
         events.remove(name);
     }
 
@@ -137,7 +136,7 @@ public class StringEvents {
      * @param name the key to query for
      * @return the first scheduled Timed under a certain query.
      */
-    public Timed query(final String name) {
+    public static Timed query(final String name) {
         return queryAll(name).get(0);
     }
 
@@ -152,7 +151,7 @@ public class StringEvents {
      * @param name the key you'd like to query.
      * @return an ArrayList of Timed elements from the key
      */
-    public ArrayList<Timed> queryAll(final String name) {
+    public static ArrayList<Timed> queryAll(final String name) {
         ArrayList<Timed> list = new ArrayList<>();
         if (events.containsKey(name)) {
             for (HashMap.Entry<Long, Timed> entry : Objects.requireNonNull(

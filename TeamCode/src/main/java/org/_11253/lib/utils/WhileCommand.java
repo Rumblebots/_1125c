@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 3:59 PM
+ * Copyright last updated on 6/10/20, 5:09 PM
  * Part of the _1125c library
  *
  * **
@@ -28,6 +28,9 @@
 
 package org._11253.lib.utils;
 
+import org._11253.lib.utils.async.event.StringEvents;
+import org._11253.lib.utils.gen.StringGenerator;
+
 /**
  * A type of command which runs while a condition is true.
  * <p>
@@ -46,67 +49,110 @@ package org._11253.lib.utils;
  *
  * @author Colin Robertson
  */
-public class WhileCommand {
-//    public static int count = 0;
-//
-//    /**
-//     * Internally used running command.
-//     * <p>
-//     * This is the part which actually interacts
-//     * with the events interface to schedule events
-//     * to run a little bit later. The user doesn't
-//     * have to worry about any of that, because I'm
-//     * just so incredibly polite.
-//     * </p>
-//     *
-//     * @param runnable the runnable which should be run.
-//     */
-//    private void _run(Runnable runnable) {
-//        if (check()) {
-//            Events.schedule(10, count, new Timed() {
-//                @Override
-//                public Runnable close() {
-//                    return new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            active().run();
-//                            _run(active());
-//                        }
-//                    };
-//                }
-//            }, false);
-//        }
-//    }
-//
-//    /**
-//     * **must** be overriden by user, it's the code that actually runs.
-//     *
-//     * @return a runnable to run
-//     */
-//    public Runnable active() {
-//        return new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        };
-//    }
-//
-//    /**
-//     * Check function. The user should override this with
-//     * whatever state they want.
-//     *
-//     * @return whether it's true or not
-//     */
-//    public boolean check() {
-//        return true;
-//    }
-//
-//    /**
-//     * Actually schedule the command itself
-//     */
-//    public final void scheduleWhileCommand() {
-//        _run(active());
-//        count++;
-//    }
+public abstract class WhileCommand {
+    /**
+     * Somewhat deprecated, used to make sure no two
+     * events are scheduled at the same time by mistake.
+     * <p>
+     * After the implementation of StringEvents, we no longer
+     * have a need to be so sure no two events are scheduled at the
+     * same time, mostly because the StringEvents compartmentalizes
+     * where events are scheduled, and, more importantly, the updated
+     * Events manager class makes sure nothing is ever scheduled at the
+     * same exact time.
+     * </p>
+     */
+    public static int count = 0;
+
+    /**
+     * Each and every one of these sexy motherfuckers makes sure there's
+     * no conflicts at all.
+     * <p>
+     * Automatically generate a new string to make sure no two StringEvents
+     * are created, so nothing overlaps. In hindsight, this is probably
+     * a little bit stupid, but hey, don't worry about it!
+     * </p>
+     */
+    private String stringName = "_wc_" + StringGenerator.getSaltString();
+
+    /**
+     * Internally used running command.
+     * <p>
+     * This is the part which actually interacts with the
+     * StringEvents interface to schedule events which run about
+     * 10 MS later.
+     * </p>
+     * <p>
+     * In order to make sure nothing ever overlaps, each and every
+     * WhileCommand has its own string name.
+     * </p>
+     * <p>
+     * If the condition is no longer the case, remove the StringEvent from
+     * the static string events manager to OPTIMIZE everything, of course.
+     * </p>
+     *
+     * @param runnable the Runnable which should be run if check() is true.
+     */
+    private void _run(Runnable runnable) {
+        if (check()) {
+            StringEvents.schedule(
+                    stringName,
+                    10,
+                    0,
+                    new Timed() {
+                        @Override
+                        public Runnable close() {
+                            return new Runnable() {
+                                @Override
+                                public void run() {
+                                    active().run();
+                                    _run(active());
+                                }
+                            };
+                        }
+                    },
+                    false
+            );
+        } else {
+            StringEvents.clear(stringName);
+        }
+    }
+
+    /**
+     * Abstract so the user has to override it.
+     * <p>
+     * Returns a runnable, which is what should be run
+     * while the condition is still true.
+     * TODO: maybe used a Timed() or something similar instead for more event options?
+     * </p>
+     *
+     * @return a Runnable which should be run if active.
+     */
+    public abstract Runnable active();
+
+    /**
+     * Abstract so the user has to override it.
+     * <p>
+     * Returns a condition (true or false).
+     * If the condition is true, run active(). However,
+     * if the condition is not true, deallocate the
+     * string event handler thingy.
+     * </p>
+     *
+     * @return whether or not the event should keep going.
+     */
+    public abstract boolean check();
+
+    /**
+     * 'Schedules' the while command.
+     * <p>
+     * Schedule is in quotes because that's not exactly what it
+     * does, as the WhileCommands don't really work like regularly
+     * scheduled asynchronous events.
+     * </p>
+     */
+    public final void scheduleWhileCommand() {
+        _run(active());
+        count++;
+    }
 }
