@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 6:30 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -50,8 +50,8 @@ import org._11253.lib.robot.phys.components.Motor;
  * here by just modifying these strings.
  * </p>
  *
- * @see Drivetrain
  * @author Colin Robertson
+ * @see Drivetrain
  */
 public class SixWheelDrivetrain extends Subsystem {
     public static Motor frontRight;

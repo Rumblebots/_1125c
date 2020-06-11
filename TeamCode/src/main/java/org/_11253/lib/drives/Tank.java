@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -42,6 +42,7 @@ import org._11253.lib.utils.telem.Telemetry;
  * Includes a basic speed-shifter (divisor) as well as mapping really simple
  * controls to controller 1, which is really just
  * </p>
+ *
  * @author Colin Robertson
  */
 public class Tank extends TeleOp {

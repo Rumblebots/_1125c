@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 5:52 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -44,6 +44,7 @@ package org._11253.lib.utils;
  * the user does something, at which point the user input
  * starts to matter again (manual override functionality)
  * </p>
+ *
  * @author Colin Robertson
  */
 public class ToggleableCommand implements CommandCore {

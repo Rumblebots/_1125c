@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -46,6 +46,7 @@ import java.util.Objects;
  * Note that multiple states can be active at once - for example, both the
  * A button and B button can be active at the same time.
  * </p>
+ *
  * @author Colin Robertson
  */
 public class ControllerMap {

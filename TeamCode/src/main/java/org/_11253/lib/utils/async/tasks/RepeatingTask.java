@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 8:36 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -39,6 +39,7 @@ import static org._11253.lib.utils.async.SharedScheduler.scheduler;
  * over and over again.
  * </p>
  * TODO: add a way to change the initial DELAY before the fixed rate executable runs
+ *
  * @author Colin Robertson
  */
 @Deprecated

@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 8:36 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -34,6 +34,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * Contains a couple things (hardware map,telem, and gamepads) to be used anywhere.
+ *
  * @author Colin Robertson
  */
 public class Global {

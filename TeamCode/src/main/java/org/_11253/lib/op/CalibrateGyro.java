@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -41,6 +41,7 @@ import java.io.File;
  * Simple OpMode to calibrate the gyroscope and write it's data
  * to a file for later usage in different OpModes. This should be
  * run before doing anything that uses pre-saved gyroscope data.
+ *
  * @author Colin Robertson
  */
 @TeleOp(name = "Calibrate Gyroscope", group = "default")

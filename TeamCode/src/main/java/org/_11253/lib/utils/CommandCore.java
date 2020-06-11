@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -33,6 +33,7 @@ package org._11253.lib.utils;
  * Just ensures that the Command itself isn't missing anything
  * really stupid and simple, like the getRunnable function, which
  * is required for the way I have CommandMaps set up.
+ *
  * @author Colin Robertson
  */
 public interface CommandCore {

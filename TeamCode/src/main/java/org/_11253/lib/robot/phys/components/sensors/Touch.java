@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 5:49 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -36,6 +36,7 @@ import org._11253.lib.robot.phys.components.Component;
  * <p>
  * Basic implementation of a touch sensor.
  * </p>
+ *
  * @author Colin Robertson
  */
 public class Touch extends Component {

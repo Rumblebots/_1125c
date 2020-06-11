@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/9/20, 8:36 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -37,6 +37,7 @@ import static org._11253.lib.utils.async.SharedScheduler.scheduler;
  * Lowest-level task functionality which provides
  * a... well, scheduled task. Not much else to
  * say about this baby.
+ *
  * @author Colin Robertson
  */
 @Deprecated

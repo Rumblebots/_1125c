@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 3:59 PM
+ * Copyright last updated on 6/10/20, 10:58 PM
  * Part of the _1125c library
  *
  * **
@@ -38,6 +38,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 /**
  * Wrapper implementation of distance sensor.
  *
+ * @author Colin Robertson
  * @see Color
  * @see RepeatingTask
  * <p>
@@ -51,7 +52,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * to your likings, just don't blame me if something goes
  * absolutely horribly & miserably wrong.
  * </p>
- * @author Colin Robertson
  */
 public class Distance extends Component {
     public DistanceMap map;
