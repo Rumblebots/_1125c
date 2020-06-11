@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 5:09 PM
+ * Copyright last updated on 6/10/20, 10:52 PM
  * Part of the _1125c library
  *
  * **
@@ -69,7 +69,7 @@ public class StringEvents {
      * saying how many handles whatever thing has.
      * </p>
      */
-    public final void tick() {
+    public static void tick() {
         for (HashMap.Entry<String, Events> entry : events.entrySet()) {
             entry.getValue().tick();
             Telemetry.addData("StringEvents_handles_" + entry.getKey(),
@@ -93,11 +93,11 @@ public class StringEvents {
      * @param timed        the actual timed element which should be executed
      * @param shouldRepeat whether or not the event should repeat itself
      */
-    public static final void schedule(final String name,
-                                      final long duration,
-                                      final long delay,
-                                      final Timed timed,
-                                      final boolean shouldRepeat) {
+    public static void schedule(final String name,
+                                final long duration,
+                                final long delay,
+                                final Timed timed,
+                                final boolean shouldRepeat) {
         if (events.containsKey(name)) {
             Events ev = events.get(name);
             assert ev != null;
@@ -122,7 +122,7 @@ public class StringEvents {
      *
      * @param name the key to delete
      */
-    public static final void clear(final String name) {
+    public static void clear(final String name) {
         events.remove(name);
     }
 

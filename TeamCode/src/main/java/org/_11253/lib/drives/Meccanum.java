@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 6:30 PM
+ * Copyright last updated on 6/10/20, 10:52 PM
  * Part of the _1125c library
  *
  * **
@@ -34,10 +34,41 @@ import org._11253.lib.op.TeleOp;
 import org._11253.lib.robot.phys.assm.Drivetrain;
 import org._11253.lib.utils.Command;
 import org._11253.lib.utils.math.Math;
+import org._11253.lib.utils.telem.Telemetry;
 
+/**
+ * A super simple meccanum drivetrain.
+ * <p>
+ * This uses addition and subtraction rather
+ * than trig to calculate the power the motors
+ * should be set to. Yeah, that's all.
+ * </p>
+ *
+ * @author Colin Robertson
+ */
 public class Meccanum extends TeleOp {
+    /**
+     * Instance of the drivetrain we'd like to use.
+     */
     public Drivetrain drivetrain = new Drivetrain();
 
+    /**
+     * Whenever a new instance of Meccanum is created
+     * run a couple setup things.
+     * <p>
+     * In order, this initializes the drivetrain and then
+     * binds drive controls to when either of the sticks
+     * have in any way moved.
+     * </p>
+     * <p>
+     * The 'formulas' we use for the meccanum wheels isn't
+     * exactly complicated, and I'm sure you can find more
+     * information on it with a quick Google search. For
+     * whatever reason, we can't get it to work using the
+     * trigonometry method, so the additive one works
+     * just as well.
+     * </p>
+     */
     public Meccanum() {
         onStart.add(
                 new Runnable() {
@@ -61,6 +92,12 @@ public class Meccanum extends TeleOp {
                                                         Math.clip(speed) + Math.clip(turn) + Math.clip(strafe)
                                                 )
                                         );
+                                        Telemetry.addData(
+                                                "_1125c_MOTORS",
+                                                "Motors engaged",
+                                                "? ",
+                                                "true"
+                                        );
                                     }
                                 };
                             }
@@ -71,6 +108,12 @@ public class Meccanum extends TeleOp {
                                     @Override
                                     public void run() {
                                         drivetrain.setPower(new MotorPower());
+                                        Telemetry.addData(
+                                                "_1125c_MOTORS",
+                                                "Motors engaged",
+                                                "? ",
+                                                "false"
+                                        );
                                     }
                                 };
                             }
