@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 10:58 PM
+ * Copyright last updated on 7/22/20, 11:43 PM
  * Part of the _1125c library
  *
  * **
@@ -67,6 +67,16 @@ public class ControllerMap {
      */
     public ControllerMap(Gamepad gamepad) {
         this.gamepad = gamepad;
+    }
+
+    /**
+     * A different... uhh... name...? of the bind function, just to be cool.
+     *
+     * @param state   a state of the gamepad
+     * @param command a function to execute
+     */
+    public final void map(States state, CommandCore command) {
+        bind(state, command);
     }
 
     /**
@@ -139,6 +149,18 @@ public class ControllerMap {
             Objects.requireNonNull(commandMap.get(States.RIGHT_TRIGGER)).getRunnable(gamepad.right_trigger != 0).run();
         if (commandMap.containsKey(States.LEFT_TRIGGER))
             Objects.requireNonNull(commandMap.get(States.LEFT_TRIGGER)).getRunnable(gamepad.left_trigger != 0).run();
+        if (commandMap.containsKey(States.RIGHT_TRIGGER_HALF))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_TRIGGER_HALF)).getRunnable(gamepad.right_trigger > 0.5);
+        if (commandMap.containsKey(States.LEFT_TRIGGER_HALF))
+            Objects.requireNonNull(commandMap.get(States.LEFT_TRIGGER_HALF)).getRunnable(gamepad.left_trigger > 0.5);
+        if (commandMap.containsKey(States.RIGHT_TRIGGER_QUARTER))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_TRIGGER_QUARTER)).getRunnable(gamepad.right_trigger > 0.25);
+        if (commandMap.containsKey(States.LEFT_TRIGGER_QUARTER))
+            Objects.requireNonNull(commandMap.get(States.LEFT_TRIGGER_QUARTER)).getRunnable(gamepad.left_trigger > 0.25);
+        if (commandMap.containsKey(States.RIGHT_TRIGGER_THREE_QUARTERS))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_TRIGGER_THREE_QUARTERS)).getRunnable(gamepad.right_trigger > 0.75);
+        if (commandMap.containsKey(States.LEFT_TRIGGER_THREE_QUARTERS))
+            Objects.requireNonNull(commandMap.get(States.LEFT_TRIGGER_THREE_QUARTERS)).getRunnable(gamepad.left_trigger > 0.75);
     }
 
     /**
@@ -151,7 +173,6 @@ public class ControllerMap {
      *         <li>"STICK": Right <b>or</b> left stick's X <b>or</b> Y is offset by anything at all</li>
      *     </ul>
      *     This means there is no specific states for left stick offset or right stick offset.
-     *     TODO: Add a way to change sensitivity or dead zones on stick movement detections
      * </p>
      */
     public enum States {
@@ -174,6 +195,12 @@ public class ControllerMap {
         LEFT_STICK_Y,
         STICK,
         RIGHT_TRIGGER,
-        LEFT_TRIGGER
+        LEFT_TRIGGER,
+        RIGHT_TRIGGER_HALF,
+        LEFT_TRIGGER_HALF,
+        RIGHT_TRIGGER_QUARTER,
+        LEFT_TRIGGER_QUARTER,
+        RIGHT_TRIGGER_THREE_QUARTERS,
+        LEFT_TRIGGER_THREE_QUARTERS
     }
 }
