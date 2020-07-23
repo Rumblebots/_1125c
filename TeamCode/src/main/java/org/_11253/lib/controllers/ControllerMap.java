@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 7/22/20, 11:43 PM
+ * Copyright last updated on 7/22/20, 11:45 PM
  * Part of the _1125c library
  *
  * **
@@ -111,6 +111,8 @@ public class ControllerMap {
     public final void runMap() {
         if (commandMap.containsKey(States.START))
             Objects.requireNonNull(commandMap.get(States.START)).getRunnable(gamepad.start).run();
+        if (commandMap.containsKey(States.GUIDE))
+            Objects.requireNonNull(commandMap.get(States.GUIDE)).getRunnable(gamepad.guide).run();
         if (commandMap.containsKey(States.A))
             Objects.requireNonNull(commandMap.get(States.A)).getRunnable(gamepad.a).run();
         if (commandMap.containsKey(States.B))
@@ -177,6 +179,7 @@ public class ControllerMap {
      */
     public enum States {
         START,
+        GUIDE,
         A,
         B,
         X,
