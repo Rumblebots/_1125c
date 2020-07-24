@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 7/23/20, 9:18 PM
+ * Copyright last updated on 7/23/20, 9:20 PM
  * Part of the _1125c library
  *
  * **
@@ -94,6 +94,10 @@ public class ControllerMap {
     public final void bind(States state, CommandCore command) {
         commandMap.remove(state);
         commandMap.put(state, command);
+    }
+
+    public final void unmap(States state) {
+        unbind(state);
     }
 
     /**
