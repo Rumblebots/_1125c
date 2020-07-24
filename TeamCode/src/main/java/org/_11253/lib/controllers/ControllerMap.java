@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 7/22/20, 11:45 PM
+ * Copyright last updated on 7/23/20, 9:15 PM
  * Part of the _1125c library
  *
  * **
@@ -137,6 +137,10 @@ public class ControllerMap {
             Objects.requireNonNull(commandMap.get(States.RIGHT_STICK)).getRunnable(gamepad.right_stick_x != 0 || gamepad.right_stick_y != 0).run();
         if (commandMap.containsKey(States.LEFT_STICK))
             Objects.requireNonNull(commandMap.get(States.LEFT_STICK)).getRunnable(gamepad.left_stick_x != 0 || gamepad.left_stick_y != 0).run();
+        if (commandMap.containsKey(States.RIGHT_STICK_BUTTON))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_STICK_BUTTON)).getRunnable(gamepad.right_stick_button).run();
+        if (commandMap.containsKey(States.LEFT_STICK_BUTTON))
+            Objects.requireNonNull(commandMap.get(States.LEFT_STICK_BUTTON)).getRunnable(gamepad.left_stick_button).run();
         if (commandMap.containsKey(States.RIGHT_STICK_X))
             Objects.requireNonNull(commandMap.get(States.RIGHT_STICK_X)).getRunnable(gamepad.right_stick_x != 0).run();
         if (commandMap.containsKey(States.RIGHT_STICK_Y))
@@ -192,6 +196,8 @@ public class ControllerMap {
         DPAD_LEFT,
         RIGHT_STICK,
         LEFT_STICK,
+        RIGHT_STICK_BUTTON,
+        LEFT_STICK_BUTTON,
         RIGHT_STICK_X,
         RIGHT_STICK_Y,
         LEFT_STICK_X,
