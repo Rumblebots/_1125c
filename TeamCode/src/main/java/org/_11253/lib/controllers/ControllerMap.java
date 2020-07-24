@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 7/23/20, 9:15 PM
+ * Copyright last updated on 7/23/20, 9:18 PM
  * Part of the _1125c library
  *
  * **
@@ -149,6 +149,18 @@ public class ControllerMap {
             Objects.requireNonNull(commandMap.get(States.LEFT_STICK_X)).getRunnable(gamepad.left_stick_x != 0).run();
         if (commandMap.containsKey(States.LEFT_STICK_Y))
             Objects.requireNonNull(commandMap.get(States.LEFT_STICK_Y)).getRunnable(gamepad.left_stick_y != 0).run();
+        if (commandMap.containsKey(States.RIGHT_OR_LEFT_X))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_OR_LEFT_Y))
+                    .getRunnable(
+                            gamepad.right_stick_y != 0 ||
+                                    gamepad.left_stick_y != 0
+                    );
+        if (commandMap.containsKey(States.RIGHT_OR_LEFT_Y))
+            Objects.requireNonNull(commandMap.get(States.RIGHT_OR_LEFT_X))
+                    .getRunnable(
+                            gamepad.right_stick_x != 0 ||
+                                    gamepad.left_stick_x != 0
+                    );
         if (commandMap.containsKey(States.STICK))
             Objects.requireNonNull(commandMap.get(States.STICK)).getRunnable(gamepad.right_stick_x != 0 || gamepad.right_stick_y != 0 || gamepad.left_stick_x != 0 || gamepad.left_stick_y != 0).run();
         if (commandMap.containsKey(States.RIGHT_TRIGGER))
@@ -202,6 +214,8 @@ public class ControllerMap {
         RIGHT_STICK_Y,
         LEFT_STICK_X,
         LEFT_STICK_Y,
+        RIGHT_OR_LEFT_X,
+        RIGHT_OR_LEFT_Y,
         STICK,
         RIGHT_TRIGGER,
         LEFT_TRIGGER,
