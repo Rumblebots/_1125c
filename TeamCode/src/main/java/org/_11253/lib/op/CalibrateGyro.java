@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 6/10/20, 10:58 PM
+ * Copyright last updated on 7/23/20, 9:26 PM
  * Part of the _1125c library
  *
  * **
@@ -41,6 +41,20 @@ import java.io.File;
  * Simple OpMode to calibrate the gyroscope and write it's data
  * to a file for later usage in different OpModes. This should be
  * run before doing anything that uses pre-saved gyroscope data.
+ * <p>
+ * Two important things to know about this baby...
+ *     <ul>
+ *         <li>
+ *             This is based on your IMU using the name 'imu' in your
+ *             configuration. If it's not named as so, none of this will work.
+ *         </li>
+ *         <li>
+ *             All of the data recorded in this segment of code is written to
+ *             "_1125c_IMU.json". If you want to read it, you have to do
+ *             magical stuff and things. Or just read the fucking file.
+ *         </li>
+ *     </ul>
+ * </p>
  *
  * @author Colin Robertson
  */
@@ -71,6 +85,9 @@ public final class CalibrateGyro extends Template {
         });
     }
 
+    /**
+     * Do some set-up with the IMU and it's parameters.
+     */
     private void lOnStart() {
         imu = new IMU("imu");
         params = new BNO055IMU.Parameters();
@@ -79,17 +96,31 @@ public final class CalibrateGyro extends Template {
         hasNotBeenCalibrated = true;
     }
 
+    /**
+     * Initialize the inertial measurement unit and clear telemetry.
+     */
     private void lLoad() {
         imu.getImu().initialize(params);
         telemetry.clear();
     }
 
+    /**
+     * Actually calibrate everything and write it to a file. Interesting, I
+     * know.
+     * <p>
+     * All of the data recorded here is written to a file named
+     * "_1125c_IMU.json". You can feel more than free to go ahead and
+     * read this from any other portion of your team's code. I already
+     * extended the invitation - if you decide not to, that sucks for
+     * you, now doesn't it?
+     * </p>
+     */
     private void lRun() {
         if (imu.getImu().isGyroCalibrated() && hasNotBeenCalibrated) {
             Global.getTelem().addLine("Writing calibration data.");
             Global.getTelem().update();
             BNO055IMU.CalibrationData calibrationData = imu.getImu().readCalibrationData();
-            String name = "IMUCalibrationData.json";
+            String name = "_1125c_IMU.json";
             File file = AppUtil.getInstance().getSettingsFile(name);
             ReadWriteFile.writeFile(file, calibrationData.serialize());
             hasNotBeenCalibrated = false;

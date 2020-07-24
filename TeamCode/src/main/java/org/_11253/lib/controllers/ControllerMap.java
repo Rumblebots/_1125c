@@ -2,7 +2,7 @@
  * **
  *
  * Copyright (c) 2020
- * Copyright last updated on 7/23/20, 9:20 PM
+ * Copyright last updated on 7/23/20, 9:26 PM
  * Part of the _1125c library
  *
  * **
@@ -111,6 +111,16 @@ public class ControllerMap {
 
     /**
      * Run all of the code which is stored in the map.
+     * <p>
+     * We check to make sure there that the command map actually contains
+     * the state we need. If it does, we go ahead and run the runnables
+     * for that certain thingy. However, if it doesn't, we do absolutely
+     * nothing. Epic, I know.
+     * </p>
+     * <p>
+     * This should (hopefully) be run once every 'tick' (every cycle of
+     * the loop). If you have a slow phone... sucks. Doesn't it?
+     * </p>
      */
     public final void runMap() {
         if (commandMap.containsKey(States.START))
